@@ -43,7 +43,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -111,7 +111,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -132,7 +132,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -153,7 +153,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -174,7 +174,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -195,7 +195,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -216,7 +216,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -237,7 +237,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -258,7 +258,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -279,7 +279,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -300,7 +300,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -321,7 +321,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -342,7 +342,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -363,7 +363,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -384,7 +384,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -405,7 +405,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -426,7 +426,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -447,7 +447,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -468,7 +468,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -489,7 +489,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -510,7 +510,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -531,7 +531,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -552,7 +552,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -573,7 +573,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -594,7 +594,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -615,7 +615,7 @@ TextureImporter:
         y: 0
         width: 101
         height: 148
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -639,7 +639,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tree_a_5: -1257120377
+      tree_a_14: 271817540
       tree_a_17: -1278271417
       tree_a_16: 1996903806
       tree_a_4: 893064453
@@ -658,11 +658,11 @@ TextureImporter:
       tree_a_13: 674568804
       tree_a_18: -721642375
       tree_a_23: -2050447969
-      tree_a_11: 1877260529
       tree_a_19: -1694310444
-      tree_a_9: -1870627503
       tree_a_22: 1733785454
-      tree_a_14: 271817540
+      tree_a_9: -1870627503
+      tree_a_11: 1877260529
+      tree_a_5: -1257120377
       tree_a_15: 1312424276
   spritePackingTag: 
   pSDRemoveMatte: 0
