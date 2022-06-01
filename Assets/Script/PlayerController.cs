@@ -8,11 +8,17 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 200f;
     public float walkForce = 10f;
     public float maxSpeed = 2f;
-    // Start is called before the first frame update
+    static string trigger = "Idle Trigger";
     void Start()
     {
         rigid2D=GetComponent<Rigidbody2D>();
         animator=GetComponent<Animator>();
+    }
+    void TriggerChange(string t)
+    {
+        animator.ResetTrigger(trigger);
+        trigger = t;
+        animator.SetTrigger(trigger);
     }
 
     // Update is called once per frame
@@ -30,23 +36,26 @@ public class PlayerController : MonoBehaviour
         }*/
 
         //animator.SetTrigger("Idle Trigger");
-        
-        if (Input.GetKey(KeyCode.LeftArrow)) 
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            animator.SetTrigger("Walk Trigger");
+            TriggerChange("Walk Trigger");
             key = -1;
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftArrow)) animator.SetTrigger("Idle Trigger");
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            animator.SetTrigger("Walk Trigger"); 
-            key = 1;
-        }
-        else if (Input.GetKeyUp(KeyCode.RightArrow)) animator.SetTrigger("Idle Trigger");
-
-        if (speed < maxSpeed)
             rigid2D.AddForce(key * transform.right * walkForce);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+            TriggerChange("Idle Trigger");
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            TriggerChange("Walk Trigger");
+            key = 1;
+            rigid2D.AddForce(key * transform.right * walkForce);
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+            TriggerChange("Idle Trigger");
+
+        //if (speed < maxSpeed)
 
         if (key!=0)
             transform.localScale = new Vector3(key,1,1);
@@ -56,4 +65,8 @@ public class PlayerController : MonoBehaviour
 
         //if (transform.position.y < -10)SceneManager.LoadScene("GameScene");
     }
+}
+enum InputKey
+{
+    LeftArrow,RightArrow
 }
