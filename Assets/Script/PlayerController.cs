@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigid2D;
@@ -8,17 +9,21 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 1200f;
     public float walkForce = 20f;
     public float maxSpeed = 6f;
-    static string trigger = "Idle Trigger";
+    static string trigger = "Idle";
     void Start()
     {
         rigid2D=GetComponent<Rigidbody2D>();
         animator=GetComponent<Animator>();
     }
-    void TriggerChange(string t)
+    void TriggerChange(Trigger t)
     {
-        animator.ResetTrigger(trigger);
-        trigger = t;
-        animator.SetTrigger(trigger);
+        if ((Trigger)Enum.Parse(typeof(Trigger), trigger) < t||!Input.anyKeyDown)
+        {
+            animator.ResetTrigger(trigger);
+            trigger = t.ToString();
+            animator.SetTrigger(trigger);
+            Debug.Log($"{trigger}");
+        }
     }
 
     // Update is called once per frame
@@ -29,46 +34,53 @@ public class PlayerController : MonoBehaviour
             this.transform.position.y, this.transform.position.z);*/
         float speed = Mathf.Abs(rigid2D.velocity.x);
         int key = 0;
-        if (Input.GetKeyDown(KeyCode.UpArrow)&& rigid2D.velocity.y< Mathf.Abs(.0001f))
+        if (Input.GetKeyDown(KeyCode.UpArrow)&&  Mathf.Abs(rigid2D.velocity.y)<1e-5f)
         {
-            //TriggerChange("Jump Trigger"); 
+            TriggerChange(Trigger.Jump); 
             rigid2D.AddForce(transform.up * jumpForce);
+            TriggerChange(Trigger.Idle);
         }
+
+        if(rigid2D.velocity.y<-0.1) 
+            TriggerChange(Trigger.Fall);
+
+        if (trigger=="Fall"&& Mathf.Abs(rigid2D.velocity.y) < 1e-5f)
+            TriggerChange(Trigger.Idle);
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            TriggerChange("Walk Trigger");
+            TriggerChange(Trigger.Run);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             key = -1;
-            //rigid2D.velocity = Vector2.left * 6;
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            TriggerChange("Idle Trigger");
-            //rigid2D.velocity = Vector2.left*2;
+            TriggerChange(Trigger.Idle);
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            TriggerChange("Walk Trigger");
+            TriggerChange(Trigger.Run);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             key = 1;
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
-        {    TriggerChange("Idle Trigger");
-            //rigid2D.AddForce(Vector2.left * walkForce*10);
+        {    TriggerChange(Trigger.Idle);
         }
         if (speed < maxSpeed)
             rigid2D.AddForce(transform.right * walkForce*key);
 
         if (key!=0)
             transform.localScale = new Vector3(key,1,1);
+        //Debug.Log($"{trigger}{rigid2D.velocity.y}");
+        
     }
 }
-enum InputKey
+enum Trigger
 {
-    LeftArrow,RightArrow
+    Idle,Run,Hurt,Attcak,Jump,Fall
 }
