@@ -14,6 +14,6 @@ public class Crystal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3( Player.transform.position.x-1, Player.transform.position.y+2,0);
+        transform.position = new Vector3( Player.transform.position.x-1.3f, Player.transform.position.y+2,0);
     }
 }
