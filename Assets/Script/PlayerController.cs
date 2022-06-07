@@ -6,10 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigid2D;
     Animator animator;
-    public PhysicsMaterial2D ground;
-    public PhysicsMaterial2D air;
     public float jumpForce = 1200f;
-    public float walkForce = 30f;
+    public float walkForce = 50f;
     public float maxSpeed = 6f;
     static string trigger = "Idle";
     void Start()
@@ -34,9 +32,6 @@ public class PlayerController : MonoBehaviour
             (Mathf.Clamp(this.transform.position.x, -2.4f, 2.4f),
             this.transform.position.y, this.transform.position.z);*/
         float speed = Mathf.Abs(rigid2D.velocity.x);
-        RaycastHit2D info = Physics2D.Raycast(new Vector2(transform.position.x,transform.position.y- 1.551f), -Vector2.up,2f);
-        if (info.collider == null) { rigid2D.sharedMaterial = air;}
-        else { rigid2D.sharedMaterial = ground; }
         int key = 0;
         if (Input.GetKeyDown(KeyCode.UpArrow)&&  Mathf.Abs(rigid2D.velocity.y)<1e-4f)
         {
