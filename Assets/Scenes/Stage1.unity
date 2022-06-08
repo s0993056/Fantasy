@@ -374,8 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2230677056a48943b7461a6c66c0362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ground: {fileID: 6200000, guid: 9a0600f462d0cc04497107f273342ab5, type: 2}
+  air: {fileID: 6200000, guid: ac2fa3dd677ed5b4987506f21929bb96, type: 2}
   jumpForce: 1400
-  walkForce: 50
+  walkForce: 30
   maxSpeed: 6
 --- !u!1 &42323277
 GameObject:
@@ -1106,6 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd78ce19f719ff4f9443f0b61c3bda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 3
 --- !u!1 &619254952
 GameObject:
   m_ObjectHideFlags: 0
