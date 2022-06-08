@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float walkForce = 30f;
     public float maxSpeed = 6f;
     static string trigger = "Idle";
+    /*float x=0;
+    float y=0;*/
     void Start()
     {
         rigid2D=GetComponent<Rigidbody2D>();
@@ -30,9 +32,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*this.transform.position = new Vector3
-            (Mathf.Clamp(this.transform.position.x, -2.4f, 2.4f),
-            this.transform.position.y, this.transform.position.z);*/
+        /*if (rigid2D.velocity.x>x) x = rigid2D.velocity.x;
+        if (rigid2D.velocity.y > y) y = rigid2D.velocity.y;
+        Debug.Log($"{x} {y}");*/
         float speed = Mathf.Abs(rigid2D.velocity.x);
         RaycastHit2D info = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.551f), -Vector2.up, 0.3f);
         if (info.collider == null) { rigid2D.sharedMaterial = air; }
