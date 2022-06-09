@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 122386942}
   - component: {fileID: 122386941}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,7 +1080,7 @@ GameObject:
   - component: {fileID: 591954888}
   - component: {fileID: 591954887}
   m_Layer: 5
-  m_Name: Image
+  m_Name: crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8181,6 +8181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5830a0e21e89844c8f81fadd4ee28af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Conversation: {fileID: 1832789139}
+  red: {fileID: 122386939}
+  crystal: {fileID: 591954885}
+  _Text: {fileID: 1810289299}
 --- !u!4 &1962648127
 Transform:
   m_ObjectHideFlags: 0

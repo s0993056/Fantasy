@@ -44,16 +44,6 @@ public class Begin : MonoBehaviour
 	{
 
 	}
-	/*public string Show(int j, string a)
-    {
-        if (j > a.Length) j = a.Length ;
-        string result="";
-		for (int i = 0; i < j; i++)
-		{ 
-            result+= a[i]+"\n"; 
-		}      
-            return result;
-    }*/
 	// Update is called once per frame
 	void Update()
 	{

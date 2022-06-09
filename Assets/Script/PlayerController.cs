@@ -36,11 +36,13 @@ public class PlayerController : MonoBehaviour
         if (rigid2D.velocity.y > y) y = rigid2D.velocity.y;
         Debug.Log($"{x} {y}");*/
         float speed = Mathf.Abs(rigid2D.velocity.x);
-        RaycastHit2D info = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.551f), -Vector2.up, 0.3f);
+        RaycastHit2D info = Physics2D.Raycast(
+            new Vector2(transform.position.x, transform.position.y - 1.551f), -Vector2.up, 0.3f);
         if (info.collider == null) { rigid2D.sharedMaterial = air; }
         else { rigid2D.sharedMaterial = ground; }
         int key = 0;
-        if (Input.GetKeyDown(KeyCode.UpArrow)&&  Mathf.Abs(rigid2D.velocity.y)<1e-4f)
+        if (Input.GetKeyDown(KeyCode.UpArrow)&&  Mathf.Abs(rigid2D.velocity.y)<1e-4f
+            && (Step)GameController.step >= Step.Jump )
         {
             TriggerChange(Trigger.Jump); 
             rigid2D.AddForce(transform.up * jumpForce);
@@ -51,32 +53,27 @@ public class PlayerController : MonoBehaviour
             TriggerChange(Trigger.Fall);
 
         if (trigger == "Fall" && Mathf.Abs(rigid2D.velocity.y) < 1e-4f)
-        { 
             TriggerChange(Trigger.Idle); 
-        }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run)
         {
             key = -1;
             if (trigger == "Idle") TriggerChange(Trigger.Run);
             if (speed < maxSpeed)
                 rigid2D.AddForce(transform.right * walkForce * key);
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
+        if (Input.GetKeyUp(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run)
             TriggerChange(Trigger.Idle);
-        }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run)
         {
             key = 1;
             if (trigger == "Idle") TriggerChange(Trigger.Run);
             if (speed < maxSpeed)
                 rigid2D.AddForce(transform.right * walkForce * key);
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {    TriggerChange(Trigger.Idle);
-        }
+        if (Input.GetKeyUp(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run)
+             TriggerChange(Trigger.Idle);
         
 
         if (key!=0)
