@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CameraController : MonoBehaviour
 {
     GameObject Player;
-    public float speed = 1;//0.3起身
+    public float speed = 0f;//0.3小精靈///1平時
     float playerY;
     Vector2 playerPos0;
     // Start is called before the first frame update
@@ -18,7 +18,9 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            playerPos0 = Player.transform.position;
+        if (GameController.i < 6) speed = 0;
+        else if (GameController.i ==6) speed = 0.3f;
+        playerPos0 = Player.transform.position;
         if (playerPos0.y < 9.5) playerY = 9.5f;
         else playerY = playerPos0.y;
         transform.position =new Vector3(Mathf.Lerp(transform.position.x,playerPos0.x,0.002f* speed), 

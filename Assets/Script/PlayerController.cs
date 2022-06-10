@@ -74,8 +74,8 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run)
              TriggerChange(Trigger.Idle);
-        
 
+        if (GameController.i == 6) key = -1;
         if (key!=0)
             transform.localScale = new Vector3(key,1,1);
         
