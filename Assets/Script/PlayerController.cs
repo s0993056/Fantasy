@@ -16,8 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 6f;
     static string trigger = "Idle";
-    /*float x=0;
-    float y=0;*/
+    public static int events=0;
     void Awake()
     {
         rigid2D=GetComponent<Rigidbody2D>();
@@ -59,29 +58,39 @@ public class PlayerController : MonoBehaviour
             TriggerChange(Trigger.Idle);
 		#endregion
 		#region 左右控制
-        if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run)
+        if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run&&events==0)
         {
             LR = -1;
             if (trigger == "Idle") TriggerChange(Trigger.Run);
             if (speed < maxSpeed)
                 rigid2D.AddForce(transform.right * walkForce * LR);
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run)
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
             TriggerChange(Trigger.Idle);
         
-        if (Input.GetKey(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run)
+        if (Input.GetKey(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run && events == 0)
         {
             LR = 1;
             if (trigger == "Idle") TriggerChange(Trigger.Run);
             if (speed < maxSpeed)
                 rigid2D.AddForce(transform.right * walkForce * LR);
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run)
+        if (Input.GetKeyUp(KeyCode.RightArrow))
              TriggerChange(Trigger.Idle);
 		#endregion
         if (GameController.clickNumber == 6) LR = -1;//6小精靈出現轉身
         if (LR!=0)//轉身
             transform.localScale = new Vector3(LR,1,1);        
+    }
+    void OnTriggerEnter2D (Collider2D other)
+    {
+        if (other.gameObject.tag == "jump" && GameController.clickNumber == 42)
+        {
+            events = 1;
+            TriggerChange(Trigger.Idle);
+        }
+        if (other.gameObject.tag == "land" && GameController.clickNumber == 49)
+            events = 2;
     }
 }
 enum Trigger// 動畫切換

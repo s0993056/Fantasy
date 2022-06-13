@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     {
         if (GameController.clickNumber < 6) speed = 0;//一開始固定
         else if (GameController.clickNumber ==6) speed = 0.3f;//6小精靈出現慢移
+        else if (GameController.clickNumber > 40) speed =1f;
         playerPos0 = Player.transform.position;
 
         if (playerPos0.y < 9.5) playerY = 9.5f;//限制不看地底
