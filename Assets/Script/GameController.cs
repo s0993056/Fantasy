@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject Conversation;
-    public GameObject red;
-    public GameObject crystal;
-    public TMPro.TMP_Text _Text;
-    public static int step = 0;
-    float tt=0;
-    float t = 0;
-    public static int i = 0;//6小精靈出現
+    [SerializeField]
+    private GameObject Conversation;
+    [SerializeField]
+    private Sprite red;
+    [SerializeField]
+    private Sprite crystal;
+    [SerializeField]
+    private Sprite NoImage;
+    [SerializeField]
+    private Image _Image;
+    [SerializeField]
+    private TMPro.TMP_Text _Text;
+    public static int step { get; private set; }
+    float tempTime=0;
+    float totalTime = 0;
+    public static int clickNumber { get; private set; } //6小精靈出現
     string[] a = { "這裡是……哪裡？\n我怎麼會在這裡醒來？", 
         "而且到處都是樹……",
     "這裡該不會是森林吧？\n不會吧！",
@@ -24,41 +32,52 @@ public class GameController : MonoBehaviour
     "才不是東西呢！我是小精靈啦！\n你終於醒來了！",
     };
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        //Conversation= GameObject.FindWithTag("Conversation");
-        Conversation.SetActive(false);
+        Conversation.SetActive(false);//隱藏對話框
+        step = 0;
+        clickNumber = 0;
     }
-    private void Image(int who)
+    void Image(string who)//切換頭像
     {
-        red.SetActive(false);
-        crystal.SetActive(false);
-        if(who == 1) red.SetActive(true);
-        if (who == 2) crystal.SetActive(true);
+		switch (who)
+		{
+            case "red": _Image.sprite = red; break;
+            case "crystal": _Image.sprite = crystal; break;
+            default:_Image.sprite = NoImage;break;
+		}		
+    }
+    void redCrystal(bool red, int n)//輪流講n次話
+    {
+        string who1; string who2;
+        if (red) { who1 = "red"; who2 = "crystal"; }
+        else {who1 = "crystal"; who2 = "red"; }
+		if (n%2==1) Image("who1");
+        else Image("who2");
     }
     // Update is called once per frame
     void Update()
     {
-        t+=Time.deltaTime;
-        if (t > 7)
+        totalTime+=Time.deltaTime;
+        if (totalTime > 7)//起身7秒
         {
             Conversation.SetActive(true);
-            if (Input.anyKeyDown && i < a.Length-1&&i != 6)
+            if (Input.anyKeyDown && clickNumber < a.Length-1&&clickNumber != 6)
             {
-                i++;
+                clickNumber++;
             }
         }
 		//Debug.Log(i);
-		_Text.text = a[i];
-		switch (i)
-		{
-            case 0 : Image(1); break;
-            case 5: Image(2); tt = t;break;
-            case 6: Conversation.SetActive(false);
-                    if(t-tt>1.8)i++;
+		_Text.text = a[clickNumber];
+		switch (clickNumber)//對話控制
+        {
+            case 0 : Image("red"); break;
+            case 5 : Image("crystal"); tempTime = totalTime;break;
+            case 6 : Conversation.SetActive(false);
+                    if(totalTime-tempTime>1.8)clickNumber++;
                     break;
-            case 7: Image(1);  break;
-            case 8: Image(2); break;
+            case 7 : Image("red");  break;
+            case 8 : Image("crystal"); break;
             default:break;
 		}
         
