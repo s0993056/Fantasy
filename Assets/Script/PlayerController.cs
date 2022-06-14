@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 public class PlayerController : MonoBehaviour
 {
+    #region 資料區
     Rigidbody2D rigid2D;
     Animator animator;
     [SerializeField]
@@ -14,9 +15,10 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 1400f;
     private float walkForce = 30f;//起步速度
     [SerializeField]
-    private float maxSpeed = 6f;
+    private float maxSpeed = 12f;
     static string trigger = "Idle";
     public static int events=0;
+	#endregion
     void Awake()
     {
         rigid2D=GetComponent<Rigidbody2D>();
@@ -31,17 +33,20 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger(trigger);
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
         float speed = Mathf.Abs(rigid2D.velocity.x);
         int LR = 0;//左右翻轉
 		#region 跳躍不卡牆
 		RaycastHit2D info = Physics2D.Raycast(
-            new Vector2(transform.position.x, transform.position.y - 1.551f), -Vector2.up, 0.3f);
+            new Vector2(transform.position.x, transform.position.y - 1.5501f), -Vector2.up, 0.3f);
         if (info.collider == null) { rigid2D.sharedMaterial = air; }
-        else { rigid2D.sharedMaterial = ground; }
+        else
+        {            
+            rigid2D.sharedMaterial = ground;
+            if (Mathf.Abs(rigid2D.velocity.y) > 1e-4f)
+                rigid2D.AddForce(transform.right * rigid2D.velocity.x*-3);
+        }        
         #endregion
         #region 跳，落控制
         if (Input.GetKeyDown(KeyCode.UpArrow)&&  Mathf.Abs(rigid2D.velocity.y)<1e-4f
@@ -78,18 +83,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.RightArrow))
              TriggerChange(Trigger.Idle);
 		#endregion
-        if (GameController.clickNumber == 6) LR = -1;//6小精靈出現轉身
+        if (Conversation.Talk[GameController.clickNumber].Say == "crystal") LR = -1;//小精靈出現轉身
         if (LR!=0)//轉身
             transform.localScale = new Vector3(LR,1,1);        
     }
-    void OnTriggerEnter2D (Collider2D other)
+    void OnTriggerEnter2D (Collider2D other)//指定區域
     {
-        if (other.gameObject.tag == "jump" && GameController.clickNumber == 42)
-        {
+        if (other.gameObject.tag == "jump" && Conversation.Talk[GameController.clickNumber].Say == "walk")
             events = 1;
-            TriggerChange(Trigger.Idle);
-        }
-        if (other.gameObject.tag == "land" && GameController.clickNumber == 49)
+        if (other.gameObject.tag == "land" && Conversation.Talk[GameController.clickNumber].Say == "jump")
             events = 2;
     }
 }

@@ -38,54 +38,43 @@ public class Begin : MonoBehaviour
 			,"都得回去才行"
 			,"所以" },
 		new string[]{ "所以，我再次醒來" } };
-	string[] b = { "「 醒……醒！」","「 請……醒……勇……人！」", "「 聽得……勇……快醒……大人……」" , "「 請醒過來，勇者大人 」" };
-	// Start is called before the first frame update
-	void Start()
-	{
-
-	}
-	// Update is called once per frame
+	string[] b = { "「 醒……醒！」", "「 請……醒……勇……人！」", "「 聽得……勇……快醒……大人……」", "「 請醒過來，勇者大人 」" };
 	void Update()
 	{
 		text0.text = a[j][0];
-		if (i > 0 && a[j].Length>1) text1.text = a[j][1];
+		if (i > 0 && a[j].Length > 1) text1.text = a[j][1];
 		if (i > 1 && a[j].Length > 2) text2.text = a[j][2];
 		if (i > 2 && a[j].Length > 3) text3.text = a[j][3];
-		if (i > 3&& a[j].Length > 4) text4.text = a[j][4];
-		if (i ==0) text0.color=new Color(text0.color.r, text0.color.g, text0.color.b,time/delay);
+		if (i > 3 && a[j].Length > 4) text4.text = a[j][4];
+		if (i == 0) text0.color = new Color(text0.color.r, text0.color.g, text0.color.b, time / delay);
 		if (i == 1) text1.color = new Color(text0.color.r, text0.color.g, text0.color.b, time / delay);
 		if (i == 2) text2.color = new Color(text0.color.r, text0.color.g, text0.color.b, time / delay);
 		if (i == 3) text3.color = new Color(text0.color.r, text0.color.g, text0.color.b, time / delay);
 		if (i == 4) text4.color = new Color(text0.color.r, text0.color.g, text0.color.b, time / delay);
-		if (i ==a[j].Length + 1&&j<5)
+		if (i == a[j].Length + 1 && j < 5)
 		{
 			text.text = b[j - 1];
 			text.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - MathF.Abs(time)) / delay);
 		}
 		time += Time.deltaTime;
-		//Debug.Log($"{j} {i}");
-			if (i == a[j].Length)
-			{
-				text0.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay-time) / (delay+delaydelay));
-				text1.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
-				text2.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
-				text3.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
-				text4.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
-			
+		if (i == a[j].Length)
+		{
+			text0.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
+			text1.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
+			text2.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
+			text3.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
+			text4.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
 		}
 		if (time > delay)
 		{
 			i++;
 			time = 0;
 			if (i == a[j].Length)
-			{
 				time = -delaydelay;
-			}
-
-			if (i == a[j].Length+1)
+			if (i == a[j].Length + 1)
 			{
-				if(j==0)i++;
-				if(j>0)	time = -delay;
+				if (j == 0) i++;
+				if (j > 0) time = -delay;
 				if (j == 5) SceneManager.LoadScene("Stage1");
 			}
 			if (i == a[j].Length + 2)

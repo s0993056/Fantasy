@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d578f6e09be8a84b9bff8540f004646
+guid: a3b7247d186a6174ba624e2ed2e84dc1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shrub_0
+      name: itch light atk sheet-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 30
-        height: 32
+        x: 7
+        y: 22
+        width: 26
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d32e35a2372ec34badb2ff7b966a34e
-      internalID: -496782213
+      spriteID: 470f48605b5085a488e23e8965b93910
+      internalID: -1894352185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_1
+      name: itch light atk sheet-Sheet_1
       rect:
         serializedVersion: 2
-        x: 30
-        y: 0
-        width: 30
-        height: 32
+        x: 45
+        y: 22
+        width: 22
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d14c500ee5c625640a53d9501d328fe0
-      internalID: 1500831694
+      spriteID: 7a5a605c932b3604b8f93cee6e8d5903
+      internalID: 1017906043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_2
+      name: itch light atk sheet-Sheet_2
       rect:
         serializedVersion: 2
-        x: 60
-        y: 0
-        width: 30
-        height: 32
+        x: 91
+        y: 21
+        width: 43
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: caacecbd9db84b74bb7915817ef98c24
-      internalID: 270063541
+      spriteID: e287b6678e5045042aadd26e07f1cf5f
+      internalID: 490479428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_3
+      name: itch light atk sheet-Sheet_3
       rect:
         serializedVersion: 2
-        x: 90
-        y: 0
-        width: 30
-        height: 32
+        x: 169
+        y: 21
+        width: 44
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e317bbb331ea0da4fac048db90a36bbe
-      internalID: -466834417
+      spriteID: 4e67ae2e5b9042043ad2d78ee136a972
+      internalID: -1055388888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_4
+      name: itch light atk sheet-Sheet_4
       rect:
         serializedVersion: 2
-        x: 120
-        y: 0
-        width: 30
-        height: 32
+        x: 249
+        y: 21
+        width: 36
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a7b472ea6f2fa04382ae04a2899c980
-      internalID: 1436921536
+      spriteID: 1598061b36a638f49a73843a1e7e5455
+      internalID: -1088250014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_5
+      name: itch light atk sheet-Sheet_5
       rect:
         serializedVersion: 2
-        x: 150
-        y: 0
-        width: 30
-        height: 32
+        x: 328
+        y: 21
+        width: 25
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,20 +223,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e71ef452647903469e12cef9ec8e611
-      internalID: -827680738
+      spriteID: b1571ed803a2e6149b0db1e7278fdaf7
+      internalID: -618083808
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_6
+      name: itch light atk sheet-Sheet_6
       rect:
         serializedVersion: 2
-        x: 180
-        y: 0
-        width: 30
-        height: 32
+        x: 414
+        y: 21
+        width: 20
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75865c1a7ad1ef94c941e3f0c1636e28
-      internalID: 895520092
+      spriteID: b1e5bda69effb60479042f716a92df91
+      internalID: -1138299085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_7
+      name: itch light atk sheet-Sheet_7
       rect:
         serializedVersion: 2
-        x: 210
-        y: 0
-        width: 30
-        height: 32
+        x: 494
+        y: 21
+        width: 20
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,20 +265,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 009fa1cb629560f40aea0aa4be91452e
-      internalID: -1579902691
+      spriteID: d513f8e0c1207f14ea94a09e0bfea9a6
+      internalID: 798367155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_8
+      name: itch light atk sheet-Sheet_8
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
-        width: 30
-        height: 32
+        x: 577
+        y: 21
+        width: 24
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,20 +286,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 029eba04e7c9aa8448e9699abf8387ea
-      internalID: 30074913
+      spriteID: 6ba829ce6beb1dc449bc8548b703bec3
+      internalID: -338531529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_9
+      name: itch light atk sheet-Sheet_9
       rect:
         serializedVersion: 2
-        x: 270
-        y: 0
-        width: 30
-        height: 32
+        x: 652
+        y: 21
+        width: 44
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,20 +307,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee84df2e775ac6c478a4cc690c19146c
-      internalID: -299293918
+      spriteID: 0b2de22df606a484189ecd40244e1de4
+      internalID: 557313192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_10
+      name: itch light atk sheet-Sheet_10
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 30
-        height: 32
+        x: 730
+        y: 21
+        width: 45
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,20 +328,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b1a763ff22546642ac514caea112033
-      internalID: 1256897481
+      spriteID: 63dd6e925e7212743a6ac9016407c35d
+      internalID: 1229096394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_11
+      name: itch light atk sheet-Sheet_11
       rect:
         serializedVersion: 2
-        x: 330
-        y: 0
-        width: 30
-        height: 32
+        x: 809
+        y: 21
+        width: 28
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,20 +349,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d30d6bb4e708b94996df39a150deda1
-      internalID: -1772223352
+      spriteID: 1db7e164841676245857cd4449e4dfd6
+      internalID: -852712240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_12
+      name: itch light atk sheet-Sheet_12
       rect:
         serializedVersion: 2
-        x: 360
-        y: 0
-        width: 30
-        height: 32
+        x: 892
+        y: 21
+        width: 25
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -370,20 +370,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c05e428a38a4154493ad9e28727143e
-      internalID: 244102172
+      spriteID: b62c9d7af4e26124d8a24e02c5f2aa95
+      internalID: -2125656043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_13
+      name: itch light atk sheet-Sheet_13
       rect:
         serializedVersion: 2
-        x: 390
-        y: 0
-        width: 30
-        height: 32
+        x: 976
+        y: 21
+        width: 19
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,20 +391,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 744f96e48c9af7648904b09972af73ac
-      internalID: -1143249084
+      spriteID: f6a82b3d4ba30fe479f658aceadb01b0
+      internalID: 336137506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_14
+      name: itch light atk sheet-Sheet_14
       rect:
         serializedVersion: 2
-        x: 420
-        y: 0
-        width: 30
-        height: 32
+        x: 1058
+        y: 21
+        width: 17
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,20 +412,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85a96ef3c33f72248b4067b0268cc5fa
-      internalID: -1054300610
+      spriteID: c9348333d37f31d4e8087efdc2fb8c8d
+      internalID: -931569189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_15
+      name: itch light atk sheet-Sheet_15
       rect:
         serializedVersion: 2
-        x: 450
-        y: 0
-        width: 30
-        height: 32
+        x: 1136
+        y: 21
+        width: 21
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,20 +433,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3da8890ee6ff77f4da700a967de5cd3f
-      internalID: 435181919
+      spriteID: c5fa65e60fcc8d440bc00f0ad4ca54f6
+      internalID: 937915937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_16
+      name: itch light atk sheet-Sheet_16
       rect:
         serializedVersion: 2
-        x: 480
-        y: 0
-        width: 30
-        height: 32
+        x: 1209
+        y: 21
+        width: 44
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,20 +454,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07308c832d9d6ba4eb1e6d81cc29cede
-      internalID: -1441102664
+      spriteID: 85d009d60a211be4bbfc447e422af2ba
+      internalID: 1934547907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_17
+      name: itch light atk sheet-Sheet_17
       rect:
         serializedVersion: 2
-        x: 510
-        y: 0
-        width: 30
-        height: 32
+        x: 1288
+        y: 21
+        width: 44
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,20 +475,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfb03e85d9b67184da44636971ff6033
-      internalID: -63880686
+      spriteID: 4bb6652ba8e32694dbe4672b7d300533
+      internalID: -196225224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_18
+      name: itch light atk sheet-Sheet_18
       rect:
         serializedVersion: 2
-        x: 540
-        y: 0
+        x: 1367
+        y: 21
         width: 30
-        height: 32
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -496,20 +496,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 024138b84e2f12f45bccfc0d87a7802e
-      internalID: -1377687243
+      spriteID: cb37dfbb3266f0d4db58cd9424b28345
+      internalID: 552998148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shrub_19
+      name: itch light atk sheet-Sheet_19
       rect:
         serializedVersion: 2
-        x: 570
-        y: 0
+        x: 1447
+        y: 21
         width: 30
-        height: 32
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -517,8 +517,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c529d45147ffebc42bfc261d6cda5547
-      internalID: 883789060
+      spriteID: d114612587477954092939727df02c85
+      internalID: -787352146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch light atk sheet-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1527
+        y: 21
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5248908d94fb19c488fcc0f0388672e7
+      internalID: -1223841533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch light atk sheet-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 1607
+        y: 21
+        width: 30
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a946acbe2660049a0992866b7d8499
+      internalID: 1314484843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch light atk sheet-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 21
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbc1728454228644b988d6d2f61d8e24
+      internalID: 1939356110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch light atk sheet-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 1772
+        y: 21
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b5de2d8acbdd3c4f82f99f09f05798e
+      internalID: 2119236997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch light atk sheet-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 21
+        width: 17
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c54af477a6a3dd8409cd84d3183bb64a
+      internalID: -724585593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: itch light atk sheet-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 1932
+        y: 21
+        width: 16
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f802819e85053f4ab08609801b7f04c
+      internalID: 1680195302
       vertices: []
       indices: 
       edges: []
@@ -534,26 +660,32 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      shrub_3: -466834417
-      shrub_4: 1436921536
-      shrub_16: -1441102664
-      shrub_6: 895520092
-      shrub_14: -1054300610
-      shrub_11: -1772223352
-      shrub_0: -496782213
-      shrub_13: -1143249084
-      shrub_9: -299293918
-      shrub_17: -63880686
-      shrub_2: 270063541
-      shrub_7: -1579902691
-      shrub_19: 883789060
-      shrub_10: 1256897481
-      shrub_18: -1377687243
-      shrub_8: 30074913
-      shrub_1: 1500831694
-      shrub_5: -827680738
-      shrub_12: 244102172
-      shrub_15: 435181919
+      itch light atk sheet-Sheet_12: -2125656043
+      itch light atk sheet-Sheet_13: 336137506
+      itch light atk sheet-Sheet_16: 1934547907
+      itch light atk sheet-Sheet_4: -1088250014
+      itch light atk sheet-Sheet_9: 557313192
+      itch light atk sheet-Sheet_21: 1314484843
+      itch light atk sheet-Sheet_19: -787352146
+      itch light atk sheet-Sheet_22: 1939356110
+      itch light atk sheet-Sheet_23: 2119236997
+      itch light atk sheet-Sheet_5: -618083808
+      itch light atk sheet-Sheet_18: 552998148
+      itch light atk sheet-Sheet_25: 1680195302
+      itch light atk sheet-Sheet_7: 798367155
+      itch light atk sheet-Sheet_1: 1017906043
+      itch light atk sheet-Sheet_11: -852712240
+      itch light atk sheet-Sheet_20: -1223841533
+      itch light atk sheet-Sheet_8: -338531529
+      itch light atk sheet-Sheet_3: -1055388888
+      itch light atk sheet-Sheet_24: -724585593
+      itch light atk sheet-Sheet_0: -1894352185
+      itch light atk sheet-Sheet_10: 1229096394
+      itch light atk sheet-Sheet_14: -931569189
+      itch light atk sheet-Sheet_15: 937915937
+      itch light atk sheet-Sheet_6: -1138299085
+      itch light atk sheet-Sheet_2: 490479428
+      itch light atk sheet-Sheet_17: -196225224
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
