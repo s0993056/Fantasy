@@ -10,14 +10,15 @@ public class Conversation
 		Who = who;
 		Say = say;
 	}
-    public static List<Conversation> Talk=new (){
+    public static List<Conversation> Talk=new ()//-15
+    {
 		 new Conversation("red","這裡是……哪裡？\n我怎麼會在這裡醒來？"),
          new Conversation("red","而且到處都是樹……"),
          new Conversation("red","這裡該不會是森林吧？\n不會吧！"),
          new Conversation("red","我昨天晚上明明回到家睡覺了\n怎麼會跑到森林裡？"),
          new Conversation("red","到底是怎麼回事啊！！"),
          new Conversation("crystal","哇哇！不要突然大叫啦！\n耳朵會痛耶！"),
-         new Conversation("act", "crystal"),//6
+         new Conversation("act", "crystal"),
          new Conversation("red","哇！什麼東西！"),
          new Conversation("crystal","才不是東西呢！我是小精靈啦！\n你終於醒來了！"),
          new Conversation("crystal","是神明大人派我來幫助你的喔！\n可以告訴我你的名字嗎？"),

@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
     {
         Talk.SetActive(false);//隱藏對話框
         step = 0;
-        clickNumber = 0;
+        clickNumber = 56;
     }
     void Image(string who)//切換頭像
     {
