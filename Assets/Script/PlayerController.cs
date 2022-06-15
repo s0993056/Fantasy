@@ -17,77 +17,81 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed = 12f;
     private float walkForce = 80f;//起步速度
     static string trigger = "Idle";
-    public static int events=0;
-	#endregion
+    AnimatorStateInfo stateinfo;
+    public static int events = 0;
+    int LR = 0;//左右翻轉
+    #endregion
     void Awake()
     {
-        rigid2D=GetComponent<Rigidbody2D>();
-        animator=GetComponent<Animator>();
+        rigid2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        AnimatorStateInfo stateinfo = animator.GetCurrentAnimatorStateInfo(0);
     }
     void TriggerChange(Trigger t)// 動畫切換
     {
-        if ((Trigger)Enum.Parse(typeof(Trigger), trigger) < t||!Input.anyKeyDown)
+        //if ((Trigger)Enum.Parse(typeof(Trigger), trigger) < t||!Input.anyKeyDown)
         {
+            //print($"{trigger} {(int)(Trigger)Enum.Parse(typeof(Trigger), trigger)} {t}");
             animator.ResetTrigger(trigger);
             trigger = t.ToString();
             animator.SetTrigger(trigger);
         }
     }
-	void FixedUpdate()
+    void FixedUpdate()
     {
-        float speed = Mathf.Abs(rigid2D.velocity.x);
-        int LR = 0;//左右翻轉
-        if(!Input.anyKeyDown) TriggerChange(Trigger.Idle);
         #region 左右控制
-        if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run&&events==0)
+        float speed = Mathf.Abs(rigid2D.velocity.x);
+        if (speed < maxSpeed && trigger == "Run")
+            rigid2D.AddForce(transform.right * walkForce * LR);
+        #endregion
+        #region 跳躍不卡牆
+        //if (Mathf.Abs(rigid2D.velocity.y) > 1e-4f)rigid2D.AddForce(transform.right * rigid2D.velocity.x * -15);
+        #endregion
+        #region 跳，落控制
+        if (trigger == "Jump")
+        rigid2D.AddForce(transform.up * jumpForce);
+        #endregion
+    }
+    void Update()
+    {
+        if (!Input.anyKeyDown && !stateinfo.IsName("jump")) TriggerChange(Trigger.Idle);
+        #region 左右控制
+        if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run && events == 0)
         {
             LR = -1;
             if (trigger == "Idle") TriggerChange(Trigger.Run);
-            if (speed < maxSpeed)
-                rigid2D.AddForce(transform.right * walkForce * LR);
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
             TriggerChange(Trigger.Idle);
-        
+
         if (Input.GetKey(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run && events == 0)
         {
             LR = 1;
             if (trigger == "Idle") TriggerChange(Trigger.Run);
-            if (speed < maxSpeed)
-                rigid2D.AddForce(transform.right * walkForce * LR);
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
-             TriggerChange(Trigger.Idle);
-		#endregion
-		#region 跳躍不卡牆
-		RaycastHit2D info = Physics2D.Raycast(
+            TriggerChange(Trigger.Idle);
+        #endregion
+        #region 跳躍不卡牆
+        RaycastHit2D info = Physics2D.Raycast(
             new Vector2(transform.position.x, transform.position.y - 1.5501f), -Vector2.up, 0.3f);
         if (info.collider == null) { rigid2D.sharedMaterial = air; }
-        else
-        {            
-            rigid2D.sharedMaterial = ground;
-            if (Mathf.Abs(rigid2D.velocity.y) > 1e-4f)
-                rigid2D.AddForce(transform.right * rigid2D.velocity.x*-15);
-        }        
+        else rigid2D.sharedMaterial = ground;
         #endregion
         #region 跳，落控制
-        if (Input.GetKey(KeyCode.UpArrow)&&  Mathf.Abs(rigid2D.velocity.y)<1e-4f
-            && (Step)GameController.step >= Step.Jump )
-        {
-            rigid2D.AddForce(transform.up * jumpForce);
-            TriggerChange(Trigger.Jump); 
-        }
-        if(rigid2D.velocity.y<-0.1) 
+        if (Input.GetKeyDown(KeyCode.UpArrow) && Mathf.Abs(rigid2D.velocity.y) < 1e-4f
+            && (Step)GameController.step >= Step.Jump)
+            TriggerChange(Trigger.Jump);
+        if (rigid2D.velocity.y < -0.1)
             TriggerChange(Trigger.Fall);
         if (trigger == "Fall" && Mathf.Abs(rigid2D.velocity.y) < 1e-4f)
             TriggerChange(Trigger.Idle);
         #endregion
-        print($"{trigger} {(Trigger)Enum.Parse(typeof(Trigger), trigger)}");
         if (Conversation.Talk[GameController.clickNumber].Say == "crystal") LR = -1;//小精靈出現轉身
-        if (LR!=0)//轉身
-            transform.localScale = new Vector3(LR,1,1);        
+        if (LR != 0)//轉身
+            transform.localScale = new Vector3(LR, 1, 1);
     }
-    void OnTriggerEnter2D (Collider2D other)//指定區域
+    void OnTriggerEnter2D(Collider2D other)//指定區域
     {
         if (other.gameObject.tag == "jump" && Conversation.Talk[GameController.clickNumber].Say == "walk")
             events = 1;
@@ -97,5 +101,5 @@ public class PlayerController : MonoBehaviour
 }
 enum Trigger// 動畫切換
 {
-    Idle,Run,Hurt,Attcak,Jump,Fall
+    Idle, Run, Hurt, Attcak, Jump, Fall
 }
