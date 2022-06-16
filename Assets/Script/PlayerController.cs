@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 public class PlayerController : MonoBehaviour
 {
     #region 資料區
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
     static string trigger = "Idle";
     public static int events = 0;
     int LR = 0;//左右翻轉
+    bool onGround = true;
     #endregion
     void Awake()
     {
@@ -27,34 +27,31 @@ public class PlayerController : MonoBehaviour
     }
     void TriggerChange(Trigger t)// 動畫切換
     {
-        //if ((Trigger)Enum.Parse(typeof(Trigger), trigger) < t||!Input.anyKeyDown)
         if(t.ToString()!=trigger)
         {
-            //print($"{trigger} {(int)(Trigger)Enum.Parse(typeof(Trigger), trigger)} {t}");
             animator.ResetTrigger(trigger);
             trigger = t.ToString();
             animator.SetTrigger(trigger);
         }
     }
     void FixedUpdate()
-    {
+    {               
         #region 左右控制
-        float speed = Mathf.Abs(rigid2D.velocity.x);
-        if (speed < maxSpeed && (Step)GameController.step >= Step.Run && events == 0)
+        float speed = rigid2D.velocity.x;
+        if ( (Step)GameController.step >= Step.Run && events == 0)
         {
-            if (Input.GetKey(KeyCode.RightArrow))rigid2D.AddForce(transform.right * walkForce);
-            if (Input.GetKey(KeyCode.LeftArrow)) rigid2D.AddForce(transform.right * walkForce * -1);
-            if (Input.anyKey &&speed!=0)print(rigid2D.velocity.x);
+            if (speed < maxSpeed && Input.GetKey(KeyCode.RightArrow)&&(onGround||speed>-3))
+                rigid2D.AddForce(transform.right * walkForce);
+            if (speed > -maxSpeed && Input.GetKey(KeyCode.LeftArrow) && (onGround || speed <3)) 
+                rigid2D.AddForce(transform.right * walkForce * -1);
         }
-        #endregion        
-        #region 跳，落控制
-        /*if (trigger == "Jump" && Mathf.Abs(rigid2D.velocity.y) < 1e-4f)
-        rigid2D.AddForce(transform.up * jumpForce);*/
-        #endregion
+        #endregion 
     }
     void Update()
     {
-        if (!Input.anyKey && !animator.GetCurrentAnimatorStateInfo(0).IsName("jump") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Fall")) TriggerChange(Trigger.Idle);
+        //閒置
+        if (!Input.anyKey && !animator.GetCurrentAnimatorStateInfo(0).IsName("jump") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Fall")) 
+            TriggerChange(Trigger.Idle);
         #region 左右控制
         if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run && events == 0)
         {
@@ -79,11 +76,16 @@ public class PlayerController : MonoBehaviour
         #region 跳躍不卡牆
         RaycastHit2D info = Physics2D.Raycast(
             new Vector2(transform.position.x, transform.position.y - 1.5501f), -Vector2.up, 0.3f);
-        if (info.collider == null) { rigid2D.sharedMaterial = air; }
+        if (info.collider == null)
+        {
+            rigid2D.sharedMaterial = air;
+            onGround =false;
+        }
         else
         {
             rigid2D.sharedMaterial = ground;
-        if (Mathf.Abs(rigid2D.velocity.y) > 1e-4f)rigid2D.AddForce(transform.right * rigid2D.velocity.x * -5);//剎車
+            onGround = true;
+            if (rigid2D.velocity.y < -1e-4f)rigid2D.AddForce(transform.right * rigid2D.velocity.x * -10);//剎車
         }
         #endregion
         #region 跳，落控制

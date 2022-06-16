@@ -22,13 +22,12 @@ public class GameController : MonoBehaviour
     float tempTime=0;
     float totalTime = 0;
     public static int clickNumber { get; private set; } 
-	#endregion
-	
+	#endregion	
     void Awake()
     {
         Talk.SetActive(false);//隱藏對話框
         step = 0;
-        clickNumber = 56;
+        clickNumber = 0;
     }
     void Image(string who)//切換頭像
     {
@@ -45,8 +44,8 @@ public class GameController : MonoBehaviour
         if (totalTime > 7)//起身7秒
         {
             Talk.SetActive(true);
-            //按任意鍵對話
-            if (Input.anyKeyDown && clickNumber < Conversation.Talk.Count-1&& Conversation.Talk[clickNumber].Who!="act")
+            //按Z/Enter鍵對話
+            if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) && clickNumber < Conversation.Talk.Count-1&& Conversation.Talk[clickNumber].Who!="act")
                 clickNumber++;
         }
 		if (PlayerController.events!=0)//到指定區
@@ -67,7 +66,7 @@ public class GameController : MonoBehaviour
         {
             Talk.SetActive(false);
             if (Conversation.Talk[clickNumber].Say == "crystal")
-                if (totalTime - tempTime > 1.8) clickNumber++;
+                if (totalTime - tempTime > 1.2) clickNumber++;
             if (Conversation.Talk[clickNumber].Say == "walk")
                 step = 1;
             if (Conversation.Talk[clickNumber].Say == "jump"|| Conversation.Talk[clickNumber].Say == "chest")
