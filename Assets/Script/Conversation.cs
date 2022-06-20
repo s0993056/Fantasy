@@ -68,6 +68,7 @@ public class Conversation
          new Conversation("crystal","我就說吧！區區一道牆是難不倒勇者大人的！"),
          new Conversation("red","是……是這樣嗎？\n難不成我真的是那個勇者？"),
          new Conversation("crystal","勇者大人快看那邊！就是那個寶箱！\n感覺就有好東西在裡面！ "),
-         new Conversation("act","chest"),
+        new Conversation("noImage", "可使用（D鍵）攻擊"),
+        new Conversation("act","chest"),
     };
 }

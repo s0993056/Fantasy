@@ -27,7 +27,9 @@ public class GameController : MonoBehaviour
     {
         Talk.SetActive(false);//隱藏對話框
         step = 0;
-        clickNumber = 56;
+        //測試用 CameraController.speed=0
+        clickNumber = 56;//0
+        totalTime = 7;//刪除
     }
     void Image(string who)//切換頭像
     {
@@ -69,8 +71,10 @@ public class GameController : MonoBehaviour
                 if (totalTime - tempTime > 1.2) clickNumber++;
             if (Conversation.Talk[clickNumber].Say == "walk")
                 step = 1;
-            if (Conversation.Talk[clickNumber].Say == "jump"|| Conversation.Talk[clickNumber].Say == "chest")
+            if (Conversation.Talk[clickNumber].Say == "jump") 
                 step = 2;
+            if(Conversation.Talk[clickNumber].Say == "chest")
+                step=3;
         }
         if(clickNumber - 1>0)//進入對話
         {
