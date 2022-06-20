@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     {
         Talk.SetActive(false);//隱藏對話框
         step = 0;
-        clickNumber = 0;
+        clickNumber = 56;
     }
     void Image(string who)//切換頭像
     {
@@ -84,5 +84,5 @@ public class GameController : MonoBehaviour
 }
 enum Step//動作限制
 {
-    Begin, Run, Jump, Attcak
+    Begin, Run, Jump, Attack
 }

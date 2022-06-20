@@ -51,12 +51,6 @@ public class Begin : MonoBehaviour
 		if (i == 2) text2.color = new Color(text0.color.r, text0.color.g, text0.color.b, time / delay);
 		if (i == 3) text3.color = new Color(text0.color.r, text0.color.g, text0.color.b, time / delay);
 		if (i == 4) text4.color = new Color(text0.color.r, text0.color.g, text0.color.b, time / delay);
-		if (i == a[j].Length + 1 && j < 5)
-		{
-			text.text = b[j - 1];
-			text.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - MathF.Abs(time)) / delay);
-		}
-		time += Time.deltaTime;
 		if (i == a[j].Length)
 		{
 			text0.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
@@ -64,6 +58,26 @@ public class Begin : MonoBehaviour
 			text2.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
 			text3.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
 			text4.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - time) / (delay + delaydelay));
+		}
+		if (i == a[j].Length + 1 && j < 5)
+		{
+			text.text = b[j - 1];
+			text.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - MathF.Abs(time)) / delay);
+		}
+		time += Time.deltaTime;
+		if (Input.anyKeyDown)
+		{
+			time = delay;
+			if (i == a[j].Length && j > 0&&j<5)
+			{
+				text0.color = new Color(text0.color.r, text0.color.g, text0.color.b, 0);
+				text1.color = new Color(text0.color.r, text0.color.g, text0.color.b, 0);
+				text2.color = new Color(text0.color.r, text0.color.g, text0.color.b, 0);
+				text3.color = new Color(text0.color.r, text0.color.g, text0.color.b, 0);
+				text4.color = new Color(text0.color.r, text0.color.g, text0.color.b, 0);
+				i++;
+				time = 0;
+			}
 		}
 		if (time > delay)
 		{
