@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour
     static string trigger = "Idle";
     public static int events = 0;
     int LR = 0;//左右翻轉
-    bool onGround = true;
-    float tempTime = 0;
+    bool onGround = true;//是否在地上//拋物線跳躍用
+    public static bool Attacking = false;//是否攻擊中
+    float tempTime = 0;//攻擊時間
     #endregion
     void Awake()
     {
@@ -49,7 +50,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (t < Trigger.Attack)
                 {
-                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("attack1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack2") && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack3"))
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("attack1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack2") 
+                        && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack3"))
                     {
                         if (t < Trigger.Hurt)
                         {
@@ -97,10 +99,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (tempTime < 0.48f)//攻擊結束
         {
-            TriggerChange(Trigger.Idle);
+            TriggerChange(Trigger.Idle); 
+            Attacking = false;
         }
         #region 左右控制
-        if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run)
+        if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run && AminatorTrigger(Trigger.Jump))
         {
             LR = -1;
             if (trigger == "Idle") TriggerChange(Trigger.Run);
@@ -110,7 +113,7 @@ public class PlayerController : MonoBehaviour
             rigid2D.AddForce(transform.right * rigid2D.velocity.x * -2);//剎車
         }
 
-        if (Input.GetKey(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run)
+        if (Input.GetKey(KeyCode.RightArrow) && (Step)GameController.step >= Step.Run && AminatorTrigger(Trigger.Jump))
         {
             LR = 1;
             if (trigger == "Idle") TriggerChange(Trigger.Run);
@@ -124,6 +127,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D) && (Step)GameController.step >= Step.Attack &&
             AminatorTrigger(Trigger.Attack))
         {
+            Attacking = true;
             TriggerChange(Trigger.Attack);
             tempTime = 0.5f;
         }
@@ -161,10 +165,10 @@ public class PlayerController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)//指定區域
     {
-        if (other.gameObject.tag == "jump" && Conversation.Talk[GameController.clickNumber].Say == "walk")
+        if (other.gameObject.tag == "jump" && Conversation.Talk[GameController.clickNumber].Say == "walk"||
+            other.gameObject.tag == "land" && Conversation.Talk[GameController.clickNumber].Say == "jump"|| 
+            other.gameObject.tag == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest")
             events = 1;
-        if (other.gameObject.tag == "land" && Conversation.Talk[GameController.clickNumber].Say == "jump")
-            events = 2;
     }
 }
 enum Trigger// 動畫切換

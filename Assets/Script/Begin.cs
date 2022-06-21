@@ -7,12 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class Begin : MonoBehaviour
 {
-	public TMPro.TMP_Text text0;
-	public TMPro.TMP_Text text1;
-	public TMPro.TMP_Text text2;
-	public TMPro.TMP_Text text3;
-	public TMPro.TMP_Text text4;
-	public Text text;
+	[SerializeField]
+	TMPro.TMP_Text text0;
+	[SerializeField]
+	TMPro.TMP_Text text1;
+	[SerializeField]
+	TMPro.TMP_Text text2;
+	[SerializeField]
+	TMPro.TMP_Text text3;
+	[SerializeField]
+	TMPro.TMP_Text text4;
+	[SerializeField]
+	TMPro.TMP_Text text5;
+	[SerializeField]
+	Text text;
 	int i = 0;
 	int j = 0;
 	public float delay = 1.5f;
@@ -28,16 +36,15 @@ public class Begin : MonoBehaviour
 			,"我這是怎麼了？"
 			,"好像要想起什麼，卻撈不出任何記憶"
 			,"遠處好像有個聲音……" },
-		new string[]{"誰……？"},
+		new string[]{"是誰？"},
 		new string[]{ "是在……叫我？"
-			,"但是我……醒不來………"
-			,"得回去才行……"},
+			,"身體……好重………"
+			,"但是……"},
 		new string[]{"是啊"
-			,"得回去才行"
-			,"無論如何"
-			,"都得回去才行"
-			,"所以" },
-		new string[]{ "所以，我再次醒來" } };
+			,"得醒來才行"
+			,"我必須……"
+			,"必須回去才行"
+			,"所以" }, };
 	string[] b = { "「 醒……醒！」", "「 請……醒……勇……人！」", "「 聽得……勇……快醒……大人……」", "「 請醒過來，勇者大人 」" };
 	void Update()
 	{
@@ -64,6 +71,9 @@ public class Begin : MonoBehaviour
 			text.text = b[j - 1];
 			text.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - MathF.Abs(time)) / delay);
 		}
+		if (j == 4 && i == a[j].Length + 2)
+			text5.color = new Color(text0.color.r, text0.color.g, text0.color.b, (delay - MathF.Abs(time)) / delay);
+		//print(j+" "+i);
 		time += Time.deltaTime;
 		if (Input.anyKeyDown)
 		{
@@ -89,7 +99,6 @@ public class Begin : MonoBehaviour
 			{
 				if (j == 0) i++;
 				if (j > 0) time = -delay;
-				if (j == 5) SceneManager.LoadScene("Stage1");
 			}
 			if (i == a[j].Length + 2)
 			{
@@ -98,9 +107,18 @@ public class Begin : MonoBehaviour
 				text2.text = "";
 				text3.text = "";
 				text4.text = "";
-				i = 0;
-				j++;
+				if (j != 4)
+				{
+					i = 0;
+					j++;
+				}
+				else
+				{
+					time = -delay;
+					text5.text = "我睜開雙眼";
+				}
 			}
+				if (j == 4&&i== a[j].Length + 3) SceneManager.LoadScene("Stage1");
 		}
 	}
 }
