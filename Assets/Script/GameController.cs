@@ -17,21 +17,51 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Image _Image;
     [SerializeField]
-    private TMPro.TMP_Text _Text;
+    private TMPro.TMP_Text _Text;//對話框
+
+    [SerializeField]
+    private Sprite HP0;
+    [SerializeField]
+    private Sprite HP1;
+    [SerializeField]
+    private Sprite HP2;
+    [SerializeField]
+    private Sprite HP3;
+    [SerializeField]
+    private Sprite HP4;
+    [SerializeField]
+    private Sprite HP5;
+    [SerializeField]
+    private Sprite HP6;
+    [SerializeField]
+    private Sprite HP7;
+    [SerializeField]
+    private Sprite HP8;
+    [SerializeField]
+    private Sprite HP9;
+    [SerializeField]
+    private Sprite HP10;
+    [SerializeField]
+    private Image _HP;//血量
     public static int step { get; private set; }
     float tempTime=0;
     float totalTime = 0;
+    int HP = 100;
     public static int clickNumber { get; private set; } 
 	#endregion	
     void Awake()
     {
         Talk.SetActive(false);//隱藏對話框
+        _HP.gameObject.SetActive(false);//隱藏血量
         step = 0;
-        //測試用 CameraController.speed=0
-        clickNumber = 0;//0
-        //totalTime = 7;//刪除
+        //測試用 CameraController.speed=0 改起身動畫
+        clickNumber = 58;//0
+        totalTime = 7;//刪除
     }
-    void Image(string who)//切換頭像
+    /// <summary>
+    /// 切換頭像
+    /// </summary>
+    void Image(string who)
     {
 		switch (who)
 		{
@@ -39,6 +69,23 @@ public class GameController : MonoBehaviour
             case "crystal": _Image.sprite = crystal; break;
             default:_Image.sprite = NoImage;break;
 		}		
+    }
+    /// <summary>
+    /// 顯示血條
+    /// </summary>
+    void ShowHP(int hp)
+    {
+        if(hp>90) _HP.sprite = HP10;
+        else if (hp > 80) _HP.sprite = HP9;
+        else if (hp > 70) _HP.sprite = HP8;
+        else if (hp > 60) _HP.sprite = HP7;
+        else if (hp > 50) _HP.sprite = HP6;
+        else if (hp > 40) _HP.sprite = HP5;
+        else if (hp > 30) _HP.sprite = HP4;
+        else if (hp > 20) _HP.sprite = HP3;
+        else if (hp > 10) _HP.sprite = HP2;
+        else if (hp > 0) _HP.sprite = HP1;
+        else  _HP.sprite = HP0;
     }
     void Update()
     {
@@ -73,8 +120,12 @@ public class GameController : MonoBehaviour
                 step = 1;
             if (Conversation.Talk[clickNumber].Say == "jump"|| Conversation.Talk[clickNumber].Say == "chest") 
                 step = 2;
-            if(Conversation.Talk[clickNumber].Say == "attack")
-                step=3;
+            if (Conversation.Talk[clickNumber].Say == "attack")
+            {
+                step = 3;
+                ShowHP(HP);
+                _HP.gameObject.SetActive(true);
+            }
         }
         if(clickNumber - 1>0)//進入對話
         {
@@ -86,7 +137,10 @@ public class GameController : MonoBehaviour
         Image(Conversation.Talk[clickNumber].Who);
     }
 }
-enum Step//動作限制
+/// <summary>
+/// 動作限制層級
+/// </summary>
+enum Step
 {
     Begin, Run, Jump, Attack
 }
