@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour
 	int LR = 0;//左右翻轉
 	bool onGround = true;//是否在地上//拋物線跳躍用
 	public static int Attacking = 0;//是否攻擊中
-	float tempTime = 0;//攻擊時間0.5
+	float attackTime = 0;//攻擊時間0.58
+	bool hurt=false;
+	float hurtTime = 0;//攻擊時間0.58
 	#endregion
 	void Awake()
 	{
@@ -99,9 +101,9 @@ public class PlayerController : MonoBehaviour
 		//閒置
 		if (Mathf.Abs(rigid2D.velocity.x) < 1e-4f && AminatorTrigger(Trigger.Idle))
 			TriggerChange(Trigger.Idle);
-		if (tempTime > 0)//攻擊計時
+		if (attackTime > 0)//攻擊計時
 		{
-			tempTime -= Time.deltaTime;
+			attackTime -= Time.deltaTime;
 			if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
 				Attacking = 1;
 			if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour
 			if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack3"))
 				Attacking = 3;
 		}
-		else if (tempTime < 0.02f)//攻擊結束------------
+		else if (attackTime < 0.0001f)//攻擊結束------------
 		{
 			TriggerChange(Trigger.Idle);
 			Attacking = 0;
@@ -140,7 +142,7 @@ public class PlayerController : MonoBehaviour
 			AminatorTrigger(Trigger.Attack))
 		{
 			TriggerChange(Trigger.Attack);
-			tempTime = 0.58f;
+			attackTime = 0.56f;
 		}
 		#endregion
 		#region 跳躍不卡牆
@@ -168,21 +170,63 @@ public class PlayerController : MonoBehaviour
 		if (rigid2D.velocity.y < -0.1)
 			TriggerChange(Trigger.Fall);
 		if (trigger == "Fall" && Mathf.Abs(rigid2D.velocity.y) < 1e-4f)
+		{
 			TriggerChange(Trigger.Idle);
-		#endregion
-		if (Conversation.Talk[GameController.clickNumber].Say == "crystal") LR = -1;//小精靈出現轉身
+			/*if (hurtTime == 1&&hurt)
+				TriggerChange(Trigger.Hurt);*/
+		}
+        #endregion
+        #region 受傷
+        if (hurt)
+		{
+			if(hurtTime==1)
+			TriggerChange(Trigger.Hurt);
+			hurtTime -= Time.deltaTime;
+			if (hurtTime < 0) hurtTime=1;
+		}
+        #endregion
+        if (Conversation.Talk[GameController.clickNumber].Say == "crystal") LR = -1;//小精靈出現轉身
 		if (LR != 0)//轉身
 			transform.localScale = new Vector3(LR, 1, 1);
 	}
-	void OnTriggerEnter2D(Collider2D other)//指定區域
+	/// <summary>
+	/// 指定區域
+	/// </summary>
+	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "jump" && Conversation.Talk[GameController.clickNumber].Say == "walk" ||
 			other.gameObject.tag == "land" && Conversation.Talk[GameController.clickNumber].Say == "jump" ||
 			other.gameObject.tag == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest")
 			events = 1;
-		if (other.gameObject.tag == "monster")
-			TriggerChange(Trigger.Hurt);
 	}
+    #region 受傷碰撞
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+		if (collision.gameObject.tag == "monster")
+		{
+			hurt = true;
+			hurtTime = 1;
+		}
+        
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "monster")
+		{
+			hurt = true;
+		}
+
+	}
+    private void OnCollisionExit2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "monster")
+		{
+			hurt = false;
+			hurtTime = 0;
+		}
+
+	}
+	#endregion
 }
 /// <summary>
 /// 動畫Trigger

@@ -9,9 +9,9 @@ public class DamageController : MonoBehaviour
 	BoxCollider2D box;////////
 	SpriteRenderer T1;///////////////
 	int n = 8;////////////
-	int AA = 0;
-	int A=0;
-	bool B = false;
+	int nowAttack = 0;
+	int lastAttack=0;
+	bool Attacking = false;
 	float t = 0;
 	// Start is called before the first frame update
 	void Awake()
@@ -25,20 +25,20 @@ public class DamageController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (AA != PlayerController.Attacking)
+		if (nowAttack != PlayerController.Attacking)
 		{
 			box.size = Vector2.zero;
-			AA = PlayerController.Attacking;
-			if ((t == 0 && PlayerController.Attacking == 1) || (A == 1 && PlayerController.Attacking == 2)
-				|| (A == 2 && PlayerController.Attacking == 3) || (A == 3 && PlayerController.Attacking == 1))
+			nowAttack = PlayerController.Attacking;
+			if ((t == 0 && nowAttack == 1) || (lastAttack == 1 && nowAttack == 2)
+				|| (lastAttack == 2 && nowAttack == 3) || (lastAttack == 3 && nowAttack == 1))
 			{
-				A = PlayerController.Attacking;
-				B = true;
+				lastAttack = nowAttack;
+				Attacking = true;
 			}
-			else B = false;
+			else Attacking = false;
 			t = 0;
 		}
-		if (AA > 0)
+		if (nowAttack > 0)
 		{
 			t += Time.deltaTime;
 			box.size = new Vector2(2.8f, 3);
@@ -47,11 +47,10 @@ public class DamageController : MonoBehaviour
 	}
 	void OnTriggerEnter2D(Collider2D other)//§ðÀ»°»´ú
 	{
-		if (other.gameObject.tag == "Finish"&&B)//////////
-			n *= -1;////////////
-		else if (other.gameObject.tag == "attack")
+		if (other.gameObject.tag == "monster" && Attacking)//////////
 		{
-			print(t + " " + PlayerController.Attacking);
+			n *= -1;////////////
+			print(nowAttack);
 		}
 	}
 }
