@@ -41,7 +41,7 @@ public class DamageController : MonoBehaviour
 		if (nowAttack > 0)
 		{
 			t += Time.deltaTime;
-			box.size = new Vector2(2.8f, 3);
+			box.size = new Vector2(2.8f, 4);
 		}
 		T1.sortingOrder = n;////////
 	}
@@ -50,7 +50,7 @@ public class DamageController : MonoBehaviour
 		if (other.gameObject.tag == "monster" && Attacking)//////////
 		{
 			n *= -1;////////////
-			print(nowAttack);
+			//print(nowAttack);
 		}
 	}
 }

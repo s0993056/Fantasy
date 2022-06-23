@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 		#endregion
 		#region ¸õÅD¤£¥dÀð
 		RaycastHit2D info = Physics2D.Raycast(
-			new Vector2(transform.position.x, transform.position.y - 1.5501f), -Vector2.up, 0.3f);
+			new Vector2(transform.position.x, transform.position.y - 2.0001f), -Vector2.up, 0.1f);
 		if (info.collider == null)
 		{
 			rigid2D.sharedMaterial = air;
@@ -172,8 +172,6 @@ public class PlayerController : MonoBehaviour
 		if (trigger == "Fall" && Mathf.Abs(rigid2D.velocity.y) < 1e-4f)
 		{
 			TriggerChange(Trigger.Idle);
-			/*if (hurtTime == 1&&hurt)
-				TriggerChange(Trigger.Hurt);*/
 		}
         #endregion
         #region ¨ü¶Ë
