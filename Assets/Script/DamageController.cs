@@ -19,7 +19,7 @@ public class DamageController : MonoBehaviour
 		box = GetComponent<BoxCollider2D>();
 		box.size = new Vector2(0, 0);
 			box.offset = Vector2.right * 2.51f;
-		T1 = T.GetComponent<SpriteRenderer>();
+		T1 = T.GetComponent<SpriteRenderer>();////////
 	}
 
 	// Update is called once per frame
@@ -49,8 +49,10 @@ public class DamageController : MonoBehaviour
 	{
 		if (other.gameObject.tag == "monster" && Attacking)//////////
 		{
-			n *= -1;////////////
-			//print(nowAttack);
+			n *= -1;
+			if(nowAttack==1) GameController.HP=10;
+			if (nowAttack == 2) GameController.HP = 20;
+			if (nowAttack == 3) GameController.HP = 30;
 		}
 	}
 }

@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 	bool hurt=false;
 	float hurtTime = 0;//攻擊時間0.58
 	#endregion
+
+	GameController hp = new GameController();///////
 	void Awake()
 	{
 		rigid2D = GetComponent<Rigidbody2D>();
@@ -115,6 +117,7 @@ public class PlayerController : MonoBehaviour
 		{
 			TriggerChange(Trigger.Idle);
 			Attacking = 0;
+			GameController.HP = 100;
 		}
 		#region 左右控制
 		if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run && AminatorTrigger(Trigger.Jump))
@@ -177,15 +180,17 @@ public class PlayerController : MonoBehaviour
         #region 受傷
         if (hurt)
 		{
-			if(hurtTime==1)
-			TriggerChange(Trigger.Hurt);
-			hurtTime -= Time.deltaTime;
+			if (hurtTime == 1)
+				TriggerChange(Trigger.Hurt);
+			if (hurtTime > 0) hurtTime -= Time.deltaTime;
 			if (hurtTime < 0) hurtTime=1;
+				GameController.HP = 0;
 		}
         #endregion
         if (Conversation.Talk[GameController.clickNumber].Say == "crystal") LR = -1;//小精靈出現轉身
 		if (LR != 0)//轉身
 			transform.localScale = new Vector3(LR, 1, 1);
+
 	}
 	/// <summary>
 	/// 指定區域

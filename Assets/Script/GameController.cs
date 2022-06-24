@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
     public static int step { get; private set; }
     float tempTime=0;
     float totalTime = 0;
-    int HP = 100;
+    public static int HP = 100;
     public static int clickNumber { get; private set; } 
 	#endregion	
     void Awake()
@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
         _HP.gameObject.SetActive(false);//隱藏血量
         step = 0;
         //測試用 CameraController.speed=0 改起身動畫
-        clickNumber = 58;//0
+        clickNumber = 58;//58
         totalTime = 7;//刪除
     }
     /// <summary>
@@ -93,6 +93,7 @@ public class GameController : MonoBehaviour
         if (totalTime > 7)//起身7秒
         {
             Talk.SetActive(true);
+            _HP.gameObject.SetActive(false);
             //按Z/Enter鍵對話
             if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) && clickNumber < Conversation.Talk.Count-1&& Conversation.Talk[clickNumber].Who!="act")
                 clickNumber++;
@@ -123,7 +124,6 @@ public class GameController : MonoBehaviour
             if (Conversation.Talk[clickNumber].Say == "attack")
             {
                 step = 3;
-                ShowHP(HP);
                 _HP.gameObject.SetActive(true);
             }
         }
@@ -135,6 +135,7 @@ public class GameController : MonoBehaviour
             }
         }
         Image(Conversation.Talk[clickNumber].Who);
+                ShowHP(HP);
     }
 }
 /// <summary>
