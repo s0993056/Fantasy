@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class DamageController : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject T;///////////
-	BoxCollider2D box;////////
-	SpriteRenderer T1;///////////////
-	int n = 8;////////////
+	BoxCollider2D box;
 	int nowAttack = 0;
 	int lastAttack=0;
 	bool Attacking = false;
-	float t = 0;
+	float t = 0;//§ðÀ»´Á¶¡
 	// Start is called before the first frame update
 	void Awake()
 	{
 		box = GetComponent<BoxCollider2D>();
 		box.size = new Vector2(0, 0);
 			box.offset = Vector2.right * 2.51f;
-		T1 = T.GetComponent<SpriteRenderer>();////////
 	}
 
 	// Update is called once per frame
@@ -43,16 +38,14 @@ public class DamageController : MonoBehaviour
 			t += Time.deltaTime;
 			box.size = new Vector2(2.8f, 4);
 		}
-		T1.sortingOrder = n;////////
 	}
 	void OnTriggerEnter2D(Collider2D other)//§ðÀ»°»´ú
 	{
 		if (other.gameObject.tag == "monster" && Attacking)//////////
 		{
-			n *= -1;
-			if(nowAttack==1) GameController.HP=10;
-			if (nowAttack == 2) GameController.HP = 20;
-			if (nowAttack == 3) GameController.HP = 30;
+			if(nowAttack==1) other.GetComponentInChildren<MonsterHurt>().hp-=10;
+			if (nowAttack == 2) other.GetComponentInChildren<MonsterHurt>().hp -= 7;
+			if (nowAttack == 3) other.GetComponentInChildren<MonsterHurt>().hp -= 15;
 		}
 	}
 }

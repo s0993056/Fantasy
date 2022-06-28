@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class GameController : MonoBehaviour
     float tempTime=0;
     float totalTime = 0;
     public static int HP = 100;
+    public static int monsterNumber;//怪物數量(是否全滅)
     public static int clickNumber { get; private set; } 
 	#endregion	
     void Awake()
@@ -55,8 +57,8 @@ public class GameController : MonoBehaviour
         _HP.gameObject.SetActive(false);//隱藏血量
         step = 0;
         //測試用 CameraController.speed=0 改起身動畫
-        clickNumber = 58;//58
-        totalTime = 7;//刪除
+        clickNumber = 0;//58
+        //totalTime = 7;//刪除
     }
     /// <summary>
     /// 切換頭像
@@ -104,12 +106,15 @@ public class GameController : MonoBehaviour
             PlayerController.events = 0;
         }
         _Text.text = Conversation.Talk[clickNumber].Say;
+        _Text.fontSize = 36;
         if (clickNumber + 1 < Conversation.Talk.Count)//開放動作前最後的對話
         {
             if (Conversation.Talk[clickNumber + 1].Who == "act")
             {
                 if (Conversation.Talk[clickNumber + 1].Say == "crystal")
                     tempTime = totalTime;
+                if (Conversation.Talk[clickNumber + 1].Say == "attack")
+                    monsterNumber = 1;
             }
         }
         if (Conversation.Talk[clickNumber].Who == "act")//開放動作
@@ -125,7 +130,10 @@ public class GameController : MonoBehaviour
             {
                 step = 3;
                 _HP.gameObject.SetActive(true);
+                print(monsterNumber);
             }
+            if (Conversation.Talk[clickNumber].Say == "end")
+                SceneManager.LoadScene("Stage2");
         }
         if(clickNumber - 1>0)//進入對話
         {
@@ -134,8 +142,9 @@ public class GameController : MonoBehaviour
                 step = 0;
             }
         }
+        if (clickNumber == 16) _Text.fontSize = 30;
         Image(Conversation.Talk[clickNumber].Who);
-                ShowHP(HP);
+        ShowHP(HP);
     }
 }
 /// <summary>

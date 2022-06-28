@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 	float attackTime = 0;//攻擊時間0.58
 	bool hurt=false;
 	float hurtTime = 0;//攻擊時間0.58
+	int Hurt = 0;
 	#endregion
 
 	GameController hp = new GameController();///////
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour
 		{
 			TriggerChange(Trigger.Idle);
 			Attacking = 0;
-			GameController.HP = 100;
+			//GameController.HP = 100;
 		}
 		#region 左右控制
 		if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run && AminatorTrigger(Trigger.Jump))
@@ -181,10 +182,12 @@ public class PlayerController : MonoBehaviour
         if (hurt)
 		{
 			if (hurtTime == 1)
+			{
 				TriggerChange(Trigger.Hurt);
+				GameController.HP -= Hurt;
+			}
 			if (hurtTime > 0) hurtTime -= Time.deltaTime;
 			if (hurtTime < 0) hurtTime=1;
-				GameController.HP = 0;
 		}
         #endregion
         if (Conversation.Talk[GameController.clickNumber].Say == "crystal") LR = -1;//小精靈出現轉身
@@ -197,9 +200,10 @@ public class PlayerController : MonoBehaviour
 	/// </summary>
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.tag == "jump" && Conversation.Talk[GameController.clickNumber].Say == "walk" ||
-			other.gameObject.tag == "land" && Conversation.Talk[GameController.clickNumber].Say == "jump" ||
-			other.gameObject.tag == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest")
+		if (other.gameObject.name == "jump" && Conversation.Talk[GameController.clickNumber].Say == "walk" ||
+			other.gameObject.name == "land" && Conversation.Talk[GameController.clickNumber].Say == "jump" ||
+			other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest" ||
+			other.gameObject.name == "shop" && Conversation.Talk[GameController.clickNumber].Say == "attack"&&GameController.monsterNumber==0)
 			events = 1;
 	}
     #region 受傷碰撞
@@ -209,6 +213,7 @@ public class PlayerController : MonoBehaviour
 		{
 			hurt = true;
 			hurtTime = 1;
+			Hurt = collision.gameObject.GetComponentInChildren<MonsterHurt>().attack;
 		}
         
     }
@@ -226,6 +231,7 @@ public class PlayerController : MonoBehaviour
 		{
 			hurt = false;
 			hurtTime = 0;
+			Hurt = 0;
 		}
 
 	}
