@@ -56,9 +56,16 @@ public class GameController : MonoBehaviour
         Talk.SetActive(false);//隱藏對話框
         _HP.gameObject.SetActive(false);//隱藏血量
         step = 0;
-        //測試用 CameraController.speed=0 改起身動畫
+        //測試用 改起身動畫
         clickNumber = 0;//58
         //totalTime = 7;//刪除
+        List<Conversation> Ta = new()
+        {
+            new Conversation("red", "這裡是……？"),
+            new Conversation("crystal", "啊！醒來了！\n還好嗎？勇者大人？"),
+            new Conversation("act", "crystal"),
+        };
+        print(Ta.IndexOf(new Conversation("act", "crystal") ));
     }
     /// <summary>
     /// 切換頭像
@@ -130,7 +137,6 @@ public class GameController : MonoBehaviour
             {
                 step = 3;
                 _HP.gameObject.SetActive(true);
-                print(monsterNumber);
             }
             if (Conversation.Talk[clickNumber].Say == "end")
                 SceneManager.LoadScene("Stage2");
