@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         if (Conversation.Talk[GameController.clickNumber].Say == "crystal") speed = 0.3f;//小精靈出現慢移
-        else if (GameController.clickNumber >= Conversation.Talk.IndexOf(new Conversation("act", "walk"))) speed =1f;//平時
+        else if (GameController.clickNumber >= 28) speed =1f;//平時
         playerPos0 = Player.transform.position;
         if (playerPos0.y < 9.5) playerY = 9.5f;//限制不看地底
         else playerY = playerPos0.y;

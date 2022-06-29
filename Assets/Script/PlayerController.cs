@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 	#region 資料區
 	Rigidbody2D rigid2D;
 	Animator animator;
+	public Vector2 position { get; private set; }
 	[SerializeField]
 	private PhysicsMaterial2D ground;//摩擦力3
 	[SerializeField]
@@ -205,6 +206,10 @@ public class PlayerController : MonoBehaviour
 			other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest" ||
 			other.gameObject.name == "shop" && Conversation.Talk[GameController.clickNumber].Say == "attack"&&GameController.monsterNumber==0)
 			events = 1;
+		if (other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest")////////////////////////
+			position = transform.position;
+		if (other.gameObject.name == "jump" && Conversation.Talk[GameController.clickNumber].Say == "attack")////////////
+			transform.position = position;
 	}
     #region 受傷碰撞
     private void OnCollisionEnter2D(Collision2D collision)

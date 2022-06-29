@@ -44,12 +44,14 @@ public class GameController : MonoBehaviour
     private Sprite HP10;
     [SerializeField]
     private Image _HP;//血量
+    [SerializeField]
+    private GameObject Player;
     public static int step { get; private set; }
     float tempTime=0;
     float totalTime = 0;
     public static int HP = 100;
     public static int monsterNumber;//怪物數量(是否全滅)
-    public static int clickNumber { get; private set; } 
+    public static int clickNumber { get; private set; }
 	#endregion	
     void Awake()
     {
@@ -59,13 +61,14 @@ public class GameController : MonoBehaviour
         //測試用 改起身動畫
         clickNumber = 0;//58
         //totalTime = 7;//刪除
-        List<Conversation> Ta = new()
+       /* if (json != null)
         {
-            new Conversation("red", "這裡是……？"),
-            new Conversation("crystal", "啊！醒來了！\n還好嗎？勇者大人？"),
-            new Conversation("act", "crystal"),
-        };
-        print(Ta.IndexOf(new Conversation("act", "crystal") ));
+            SaveDate saveDate = JsonUtility.FromJson<SaveDate>(json);
+            //Player.transform.position = saveDate.position;
+            clickNumber = saveDate.clickNumber;
+            totalTime = saveDate.totalTime;
+        }
+        print(totalTime);*/
     }
     /// <summary>
     /// 切換頭像
@@ -137,6 +140,8 @@ public class GameController : MonoBehaviour
             {
                 step = 3;
                 _HP.gameObject.SetActive(true);
+                var save = new SaveDate() {position=Player.GetComponent<PlayerController>().position, clickNumber=clickNumber,totalTime=totalTime};
+                print(save.position);
             }
             if (Conversation.Talk[clickNumber].Say == "end")
                 SceneManager.LoadScene("Stage2");
