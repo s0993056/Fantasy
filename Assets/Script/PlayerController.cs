@@ -208,8 +208,6 @@ public class PlayerController : MonoBehaviour
 			events = 1;
 		if (other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest")////////////////////////
 			position = transform.position;
-		if (other.gameObject.name == "jump" && Conversation.Talk[GameController.clickNumber].Say == "attack")////////////
-			transform.position = position;
 	}
     #region ¨ü¶Ë¸I¼²
     private void OnCollisionEnter2D(Collision2D collision)
