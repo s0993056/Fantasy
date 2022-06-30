@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 	private float walkForce = 160f;//起步速度
 	static string trigger = "Idle";
 	public static int events = 0;
-	int LR = 0;//左右翻轉
+	public static int LR = 0;//左右翻轉
 	bool onGround = true;//是否在地上//拋物線跳躍用
 	public static int Attacking = 0;//是否攻擊中
 	float attackTime = 0;//攻擊時間0.58

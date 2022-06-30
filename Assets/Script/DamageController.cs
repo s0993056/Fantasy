@@ -9,17 +9,21 @@ public class DamageController : MonoBehaviour
 	int lastAttack=0;
 	bool Attacking = false;
 	float t = 0;//§ðÀ»´Á¶¡
+	int damage;
+
 	// Start is called before the first frame update
 	void Awake()
 	{
 		box = GetComponent<BoxCollider2D>();
 		box.size = new Vector2(0, 0);
 			box.offset = Vector2.right * 2.51f;
+
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		damage = 1+2;
 		if (nowAttack != PlayerController.Attacking)
 		{
 			box.size = Vector2.zero;
@@ -43,9 +47,13 @@ public class DamageController : MonoBehaviour
 	{
 		if (other.gameObject.tag == "monster" && Attacking)//////////
 		{
-			if(nowAttack==1) other.GetComponentInChildren<MonsterHurt>().hp-=10;
-			if (nowAttack == 2) other.GetComponentInChildren<MonsterHurt>().hp -= 7;
-			if (nowAttack == 3) other.GetComponentInChildren<MonsterHurt>().hp -= 15;
+			if(nowAttack==1) other.GetComponentInChildren<MonsterHurt>().hp-=(int)(damage*1.5f);
+			if (nowAttack == 2) other.GetComponentInChildren<MonsterHurt>().hp -= damage;
+			if (nowAttack == 3)
+			{
+				other.GetComponentInChildren<MonsterHurt>().hp -= damage * 2;
+				other.GetComponent<Rigidbody2D>().AddForce(new Vector2(PlayerController.LR*16000, 16000));
+			}
 		}
 	}
 }

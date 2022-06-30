@@ -59,8 +59,8 @@ public class GameController : MonoBehaviour
         _HP.gameObject.SetActive(false);//隱藏血量
         step = 0;
         //測試用 改起身動畫
-        clickNumber = 0;//58
-        //totalTime = 7;//刪除
+        clickNumber = 58;//58
+        totalTime = 7;//刪除
        /* if (json != null)
         {
             SaveDate saveDate = JsonUtility.FromJson<SaveDate>(json);
@@ -141,7 +141,7 @@ public class GameController : MonoBehaviour
                 step = 3;
                 _HP.gameObject.SetActive(true);
                 var save = new SaveDate() {position=Player.GetComponent<PlayerController>().position, clickNumber=clickNumber,totalTime=totalTime};
-                print(save.position);
+                //print(save.position);
             }
             if (Conversation.Talk[clickNumber].Say == "end")
                 SceneManager.LoadScene("Stage2");

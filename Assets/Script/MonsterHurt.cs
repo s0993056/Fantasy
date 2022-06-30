@@ -21,6 +21,8 @@ public class MonsterHurt : MonoBehaviour
     private Sprite HP5;
     [SerializeField]
     private SpriteRenderer _HP;//血量
+    [SerializeField]
+    private GameObject bag;
     int HP = 30;
     public int hp ;
     public int attack=10;////////// 攻擊暫時放這
@@ -46,6 +48,8 @@ public class MonsterHurt : MonoBehaviour
         {
             _HP.sprite = HP0;
             GameController.monsterNumber--;
+            GameObject a= Instantiate(bag);
+            a.transform.position = new Vector2(Monster.transform.position.x, Monster.transform.position.y - 2);
             Destroy(Monster);
         }
     }
