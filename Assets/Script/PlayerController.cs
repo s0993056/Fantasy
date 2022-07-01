@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
 	private float maxSpeed = 12f;
 	private float walkForce = 160f;//起步速度
 	static string trigger = "Idle";
-	public static int events = 0;
 	public static int LR = 0;//左右翻轉
 	bool onGround = true;//是否在地上//拋物線跳躍用
 	public static int Attacking = 0;//是否攻擊中
@@ -25,6 +24,7 @@ public class PlayerController : MonoBehaviour
 	bool hurt=false;
 	float hurtTime = 0;//攻擊時間0.58
 	int Hurt = 0;
+	public static bool events = false;
 	#endregion
 
 	GameController hp = new GameController();///////
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 	{
 		rigid2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
+
 	}
 	/// <summary>
 	/// 動畫切換
@@ -205,7 +206,8 @@ public class PlayerController : MonoBehaviour
 			other.gameObject.name == "land" && Conversation.Talk[GameController.clickNumber].Say == "jump" ||
 			other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest" ||
 			other.gameObject.name == "shop" && Conversation.Talk[GameController.clickNumber].Say == "attack"&&GameController.monsterNumber==0)
-			events = 1;
+			events = true;
+		
 		if (other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest")////////////////////////
 			position = transform.position;
 	}

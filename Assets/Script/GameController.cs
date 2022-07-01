@@ -110,10 +110,10 @@ public class GameController : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) && clickNumber < Conversation.Talk.Count-1&& Conversation.Talk[clickNumber].Who!="act")
                 clickNumber++;
         }
-		if (PlayerController.events!=0)//到指定區
+		if (PlayerController.events)//到指定區
 		{
             clickNumber++;
-            PlayerController.events = 0;
+            PlayerController.events = false;
         }
         _Text.text = Conversation.Talk[clickNumber].Say;
         _Text.fontSize = 36;
