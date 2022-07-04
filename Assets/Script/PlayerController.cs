@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
 	private float jumpForce = 1400f;
 	[SerializeField]
 	private float maxSpeed = 12f;
+	[SerializeField]
+	private AudioClip attack1;
+	[SerializeField]
+	private AudioClip attack3;
+	AudioSource audio;
 	private float walkForce = 160f;//起步速度
 	static string trigger = "Idle";
 	public static int LR = 0;//左右翻轉
@@ -32,12 +37,10 @@ public class PlayerController : MonoBehaviour
 	{
 		rigid2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
+		audio=GetComponent<AudioSource>();
 		transform.position = new Vector2(PlayerPrefs.GetFloat("x",transform.position.x), PlayerPrefs.GetFloat("y", transform.position.y));
 		if (GameController.clickNumber < 1)
 			animator.Play("relife");
-	}
-	private void Start()
-	{
 	}
 	/// <summary>
 	/// 動畫切換
@@ -93,6 +96,14 @@ public class PlayerController : MonoBehaviour
 				!animator.GetCurrentAnimatorStateInfo(0).IsName("attack2") && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack3");
 		}
 	}
+	/// <summary>
+	/// 攻擊音效
+	/// </summary>
+	void attackAudio(int a)
+    {
+		if (a == 0) audio.PlayOneShot(attack1);
+		if (a == 1) audio.PlayOneShot(attack3);
+	}
 	void FixedUpdate()
 	{
 		#region 左右控制
@@ -125,7 +136,6 @@ public class PlayerController : MonoBehaviour
 		{
 			TriggerChange(Trigger.Idle);
 			Attacking = 0;
-			//GameController.HP = 100;
 		}
 		#region 左右控制
 		if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run && AminatorTrigger(Trigger.Jump))

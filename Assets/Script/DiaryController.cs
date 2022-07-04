@@ -15,13 +15,15 @@ public class DiaryController : MonoBehaviour
     [SerializeField]
     TMPro.TMP_Text text;
     List<string> diary;
-        int nowpage;
+    string note = "2-3";
+    int nowpage;
     int clickNumber = GameController.clickNumber;
     void Awake()
     {
-        if (clickNumber > Conversation.Act("walk"))
+        string[] notes= note.Split('-');
+        if (notes[0]=="2")
             diary = new List<string> {  Diary.diary[0]};
-        if (clickNumber > Conversation.Act("end"))
+        if (notes[1] == "3")
             diary.Add( Diary.diary[1]);
         left.SetActive(false);
         right.SetActive(false);
