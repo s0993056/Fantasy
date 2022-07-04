@@ -865,7 +865,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -2081,75 +2081,6 @@ Transform:
   m_Father: {fileID: 1159442912}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &830138180
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2597719085511350311, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717508, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_Name
-      value: PF Village Props - Chest Silver
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.6444545
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.914587
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7f2681b23c23afc4fbb43c6dca9f41f9, type: 3}
 --- !u!1 &850986627
 GameObject:
   m_ObjectHideFlags: 0
@@ -12974,8 +12905,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u5982\u679C\u52C7\u8005\u5927\u4EBA\u9858\u610F\u52C7\u8005\u5927\u4EBA\uFF0C\u5927\u5BB6\u61C9\u8A72\u4E5F\u6703\u52C7\u8005\u5927\u4EBA\u7D66\u52C7\u8005\u5927\u4EBA\u5594\uFF01\n\uFF08\u96D6\u7136\u73FE\u5728\u5C0D\u4ED8\u9B54\u7269\u4E0D\u7528\u64D4\u5FC3\uFF0C\u4E0D\u904E\u9B54\u738B\u61C9\u8A72\u5F37\u5F88\u591A\u5427\uFF1F\uFF09\u8A92"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5d0f08626f382e5468de6c7440880843, type: 2}
-  m_sharedMaterial: {fileID: -3815951042232502796, guid: 5d0f08626f382e5468de6c7440880843, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e89e584fa7970040891966440ff36c3, type: 2}
+  m_sharedMaterial: {fileID: -6102958969363762663, guid: 2e89e584fa7970040891966440ff36c3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13757,6 +13688,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &5573211744348757059
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.6444545
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.914587
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312642, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275448790903312643, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
+      propertyPath: m_Name
+      value: PF Village Props - Chest Silver
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 94079c97bbfb2f04cbe80d579e398e95, type: 3}
 --- !u!4 &7876780736962591196
 Transform:
   m_ObjectHideFlags: 0

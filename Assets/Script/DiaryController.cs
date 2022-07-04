@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DiaryController : MonoBehaviour
 {
@@ -15,16 +16,16 @@ public class DiaryController : MonoBehaviour
     TMPro.TMP_Text text;
     List<string> diary;
         int nowpage;
-    int clickNumber = 80;///////////////
+    int clickNumber = GameController.clickNumber;
     void Awake()
     {
-        if (clickNumber > 30)
+        if (clickNumber > Conversation.Act("walk"))
             diary = new List<string> {  Diary.diary[0]};
-        if (clickNumber > 70)
+        if (clickNumber > Conversation.Act("end"))
             diary.Add( Diary.diary[1]);
         left.SetActive(false);
         right.SetActive(false);
-
+        nowpage=PlayerPrefs.GetInt("nowpage", nowpage);
     }
 
     void show(int nowpage)
@@ -46,14 +47,14 @@ public class DiaryController : MonoBehaviour
     void Update()
     {
         show(nowpage);
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow)&&nowpage<diary.Count)
             nowpage++;
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && nowpage>1)
             nowpage--;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            var s = new SaveDate() { nowpage = nowpage };
-            print(s.nowpage); 
+            PlayerPrefs.SetInt("nowpage",nowpage);
+            SceneManager.LoadScene("Stage2");
         }
 
     }

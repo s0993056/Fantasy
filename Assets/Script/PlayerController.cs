@@ -32,7 +32,12 @@ public class PlayerController : MonoBehaviour
 	{
 		rigid2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
-
+		transform.position = new Vector2(PlayerPrefs.GetFloat("x",transform.position.x), PlayerPrefs.GetFloat("y", transform.position.y));
+		if (GameController.clickNumber < 1)
+			animator.Play("relife");
+	}
+	private void Start()
+	{
 	}
 	/// <summary>
 	/// °Êµe¤Á´«
@@ -207,9 +212,16 @@ public class PlayerController : MonoBehaviour
 			other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest" ||
 			other.gameObject.name == "shop" && Conversation.Talk[GameController.clickNumber].Say == "attack"&&GameController.monsterNumber==0)
 			events = true;
-		
+
 		if (other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest")////////////////////////
-			position = transform.position;
+		{//position = transform.position;
+			PlayerPrefs.SetFloat("x",transform.position.x);
+			PlayerPrefs.SetFloat("y", transform.position.y);
+		}
+		if (other.gameObject.tag == "chest")
+		{
+			other.GetComponent<Animator>().SetTrigger("Open");
+		}
 	}
     #region ¨ü¶Ë¸I¼²
     private void OnCollisionEnter2D(Collision2D collision)

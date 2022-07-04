@@ -52,7 +52,7 @@ public class DamageController : MonoBehaviour
 			if (nowAttack == 3)
 			{
 				other.GetComponentInChildren<MonsterHurt>().hp -= damage * 2;
-				other.GetComponent<Rigidbody2D>().AddForce(new Vector2(PlayerController.LR*16000, 16000));
+				other.GetComponent<Rigidbody2D>().AddForce(new Vector2(PlayerController.LR*160, 160));
 			}
 		}
 	}

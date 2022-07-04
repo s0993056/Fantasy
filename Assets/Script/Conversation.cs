@@ -11,11 +11,11 @@ public class Conversation
 		Say = say;
 	}
     public static List<Conversation> Talk=new ()//-15
-    {
-		 new Conversation("red", "這裡是……？"),
+    {//DiaryController    Crystal    CameraController 
+        new Conversation("red", "這裡是……？"),
          new Conversation("crystal", "啊！醒來了！\n還好嗎？勇者大人？"),
-         new Conversation("act", "crystal"),
-         new Conversation("red", "勇者大人？是在說我嗎？\n還有你是？"),
+         new Conversation("act", "crystal"),// Crystal
+        new Conversation("red", "勇者大人？是在說我嗎？\n還有你是？"),
          new Conversation("crystal", "誒！勇者大人都不記得了嗎？我是小精靈啊！\n不會連自己的名字都忘記了吧？"),
          new Conversation("red", "我嗎？我是……\n我是小勇，這我還記得啦……"),
         new Conversation("red", "（好像漸漸地想起來了）"),
@@ -40,7 +40,7 @@ public class Conversation
          new Conversation("red", "嗯？"),
          new Conversation("crystal", "嗯？怎麼了嗎？"),
          new Conversation("red", "不，沒什麼……\n（偶爾會說奇怪的話呢，是在對誰說話嗎？）"),
-         new Conversation("act","walk"),
+         new Conversation("act","walk"),//DiaryController  CameraController
         new Conversation("red", "（怎麼突然出現這麼高的牆？）\n（都高過我的頭了，剛剛明明還沒有啊？）"),
         new Conversation("crystal", "我感覺到了！\n有好東西在那上面喔！"),
          new Conversation("red", "上面嗎？突然就出現比人高的牆，上面還有寶箱……\n這裡果然是異世界呢"),
@@ -87,6 +87,17 @@ public class Conversation
         new Conversation("red", "哈哈，我會考慮看看……\n先在這裡準備完，再繼續往前吧"),
         new Conversation("red", "（雖然還有很多不明白的地方）\n（不過當務之急是必須想辦法回到原本的世界）"),
         new Conversation("red", "（沒問題的，小勇，一定沒問題的！）\n（趕快變強擊敗魔王，趕快回家吧！）"),
-        new Conversation("act", "end"),
+        new Conversation("act", "end"),//DiaryController 
     };
+    public static int Act(string s)
+    {
+		foreach (var item in Talk)
+		{
+			if (item.Say==s)
+			{
+                return Talk.IndexOf(item);
+			}
+		}
+        return 999;
+    }
 }
