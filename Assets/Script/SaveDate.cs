@@ -8,6 +8,7 @@ public class SaveDate //: MonoBehaviour
     public int clickNumber { get; set; }
     public float totalTime { get; set; }
     public int nowpage { get; set; }
+    public string note { get; set; }
     public int monsterNumber { get; set; }//////
 
     //public клл~ { get; set; }

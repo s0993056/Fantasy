@@ -216,7 +216,7 @@ public class PlayerController : MonoBehaviour
 	/// 指定區域
 	/// </summary>
 	void OnTriggerEnter2D(Collider2D other)
-	{
+	{//對話區域
 		if (other.gameObject.name == "jump" && Conversation.Talk[GameController.clickNumber].Say == "walk" ||
 			other.gameObject.name == "land" && Conversation.Talk[GameController.clickNumber].Say == "jump" ||
 			other.gameObject.name == "attack" && Conversation.Talk[GameController.clickNumber].Say == "chest" ||
@@ -228,6 +228,7 @@ public class PlayerController : MonoBehaviour
 			PlayerPrefs.SetFloat("x",transform.position.x);
 			PlayerPrefs.SetFloat("y", transform.position.y);
 		}
+		//開箱
 		if (other.gameObject.tag == "chest")
 		{
 			other.GetComponent<Animator>().SetTrigger("Open");

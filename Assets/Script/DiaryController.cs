@@ -15,22 +15,24 @@ public class DiaryController : MonoBehaviour
     [SerializeField]
     TMPro.TMP_Text text;
     List<string> diary;
-    string note = "2-3";
+    string note = "0-1";
     int nowpage;
-    int clickNumber = GameController.clickNumber;
-    void Awake()
-    {
+    int lastpage;
+	void readNote()
+	{
+        if(note!="")
+        {
         string[] notes= note.Split('-');
-        if (notes[0]=="2")
-            diary = new List<string> {  Diary.diary[0]};
-        if (notes[1] == "3")
-            diary.Add( Diary.diary[1]);
-        left.SetActive(false);
-        right.SetActive(false);
-        nowpage=PlayerPrefs.GetInt("nowpage", nowpage);
-    }
-
-    void show(int nowpage)
+        diary = new List<string> {};
+            foreach (var item in notes)
+            {
+                diary.Add(Diary.diary[int.Parse(item)]);
+            }
+        lastpage = diary.Count;
+		}
+        else lastpage = 0;
+	}
+	void show(int nowpage)
     {
         if (diary == null) return;
         if (diary != null&&nowpage==0)
@@ -46,10 +48,17 @@ public class DiaryController : MonoBehaviour
             left.SetActive(true);
         else left.SetActive(false);
     }
+    void Awake()
+    {
+        readNote();
+        left.SetActive(false);
+        right.SetActive(false);
+        //nowpage=PlayerPrefs.GetInt("nowpage", nowpage);
+    }
     void Update()
     {
         show(nowpage);
-        if (Input.GetKeyDown(KeyCode.RightArrow)&&nowpage<diary.Count)
+        if (Input.GetKeyDown(KeyCode.RightArrow)&&nowpage< lastpage)
             nowpage++;
         if (Input.GetKeyDown(KeyCode.LeftArrow) && nowpage>1)
             nowpage--;

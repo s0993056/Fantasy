@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
 	public static int step { get; private set; }
 	float tempTime = 0;
 	float totalTime = 0;
+	string note = "";
 	public static int HP = 100;
 	public static int monsterNumber;//怪物數量(是否全滅)
 	public static int clickNumber { get; private set; }
@@ -58,17 +59,7 @@ public class GameController : MonoBehaviour
 		Talk.SetActive(false);//隱藏對話框
 		_HP.gameObject.SetActive(false);//隱藏血量
 		step = 0;
-		//測試用 改起身動畫
-		clickNumber = 0;//58
-						//totalTime = 7;//刪除
-		/* if (json != null)
-		 {
-			 SaveDate saveDate = JsonUtility.FromJson<SaveDate>(json);
-			 //Player.transform.position = saveDate.position;
-			 clickNumber = saveDate.clickNumber;
-			 totalTime = saveDate.totalTime;
-		 }
-		 print(totalTime);*/
+		clickNumber = 0;
 		//PlayerPrefs.DeleteAll();/*
 			clickNumber = PlayerPrefs.GetInt("clickNumber", clickNumber);
 			totalTime=PlayerPrefs.GetFloat("totalTime", totalTime);//*/
@@ -102,6 +93,23 @@ public class GameController : MonoBehaviour
 		else if (hp > 0) _HP.sprite = HP1;
 		else _HP.sprite = HP0;
 	}
+	/// <summary>
+	/// 寫日記
+	/// </summary>
+	void WriteNote(int i)
+	{
+		if (i == 0) note = "0";
+		else note += $"-{i}";
+		PlayerPrefs.SetString("note", note);
+	}
+	/// <summary>
+	/// 存檔
+	/// </summary>
+	void Saving()
+	{
+		PlayerPrefs.SetInt("clickNumber", clickNumber);
+		PlayerPrefs.SetFloat("totalTime", totalTime);
+	}
 	void Update()
 	{
 		//print(PlayerPrefs.GetInt("clickNumber",1001));
@@ -111,7 +119,8 @@ public class GameController : MonoBehaviour
 			Talk.SetActive(true);
 			_HP.gameObject.SetActive(false);
 			//按Z/Enter鍵對話
-			if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) && clickNumber < Conversation.Talk.Count - 1 && Conversation.Talk[clickNumber].Who != "act")
+			if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)) 
+				&& clickNumber < Conversation.Talk.Count - 1 && Conversation.Talk[clickNumber].Who != "act")
 				clickNumber++;
 		}
 		if (PlayerController.events)//到指定區
@@ -137,20 +146,23 @@ public class GameController : MonoBehaviour
 			if (Conversation.Talk[clickNumber].Say == "crystal")
 				if (totalTime - tempTime > 1.2) clickNumber++;
 			if (Conversation.Talk[clickNumber].Say == "walk")
+			{
 				step = 1;
+				WriteNote(0);
+			}
 			if (Conversation.Talk[clickNumber].Say == "jump" || Conversation.Talk[clickNumber].Say == "chest")
 				step = 2;
 			if (Conversation.Talk[clickNumber].Say == "attack")
 			{
 				step = 3;
 				_HP.gameObject.SetActive(true);
-				//var save = new SaveDate() {position=Player.GetComponent<PlayerController>().position, clickNumber=clickNumber,totalTime=totalTime};
-				//print(save.position);
-				PlayerPrefs.SetInt("clickNumber", clickNumber);
-				PlayerPrefs.SetFloat("totalTime", totalTime);
+				Saving();
 			}
 			if (Conversation.Talk[clickNumber].Say == "end")
+			{
+				WriteNote(1);
 				SceneManager.LoadScene("Stage2");
+			}
 		}
 		if (clickNumber - 1 > 0)//進入對話
 		{
@@ -161,7 +173,7 @@ public class GameController : MonoBehaviour
 					PlayerPrefs.Save();
 			}
 		}
-		if (clickNumber == 16) _Text.fontSize = 30;
+		if (clickNumber == 16) _Text.fontSize = 30;///////縮小字
 		Image(Conversation.Talk[clickNumber].Who);
 		ShowHP(HP);
 	}

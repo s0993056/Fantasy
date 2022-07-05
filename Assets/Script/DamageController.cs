@@ -23,7 +23,7 @@ public class DamageController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		damage = 1+2;
+		damage = 4+2;
 		if (nowAttack != PlayerController.Attacking)
 		{
 			box.size = Vector2.zero;
@@ -43,7 +43,10 @@ public class DamageController : MonoBehaviour
 			box.size = new Vector2(2.8f, 4);
 		}
 	}
-	void OnTriggerEnter2D(Collider2D other)//§ðÀ»°»´ú
+	/// <summary>
+	/// §ðÀ»°»´ú
+	/// </summary>
+	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "monster" && Attacking)//////////
 		{
