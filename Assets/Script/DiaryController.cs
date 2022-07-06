@@ -15,7 +15,7 @@ public class DiaryController : MonoBehaviour
     [SerializeField]
     TMPro.TMP_Text text;
     List<string> diary;
-    string note = "0-1";
+    string note;
     int nowpage;
     int lastpage;
 	void readNote()
@@ -50,10 +50,15 @@ public class DiaryController : MonoBehaviour
     }
     void Awake()
     {
-        readNote();
+        var a = PlayerPrefs.GetString("a", "");
+        if (a != "")
+        {
+            note = JsonUtility.FromJson<SaveDate>(a).note;
+        }
+            readNote();
         left.SetActive(false);
         right.SetActive(false);
-        //nowpage=PlayerPrefs.GetInt("nowpage", nowpage);
+        nowpage=PlayerPrefs.GetInt("nowpage"+"a", nowpage);
     }
     void Update()
     {
@@ -64,7 +69,7 @@ public class DiaryController : MonoBehaviour
             nowpage--;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PlayerPrefs.SetInt("nowpage",nowpage);
+            PlayerPrefs.SetInt("nowpage"+"a",nowpage);
             SceneManager.LoadScene("Stage2");
         }
 

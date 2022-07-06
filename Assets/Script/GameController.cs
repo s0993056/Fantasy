@@ -53,6 +53,9 @@ public class GameController : MonoBehaviour
 	public static int HP = 100;
 	public static int monsterNumber;//怪物數量(是否全滅)
 	public static int clickNumber { get; private set; }
+	//string json;
+	SaveDate saveDate;
+	SaveDate loadDate;
 	#endregion
 	void Awake()
 	{
@@ -60,10 +63,15 @@ public class GameController : MonoBehaviour
 		_HP.gameObject.SetActive(false);//隱藏血量
 		step = 0;
 		clickNumber = 0;
-		//PlayerPrefs.DeleteAll();/*
-			clickNumber = PlayerPrefs.GetInt("clickNumber", clickNumber);
-			totalTime=PlayerPrefs.GetFloat("totalTime", totalTime);//*/
+		saveDate = new SaveDate();
+		var a = PlayerPrefs.GetString("a", "");
+        if (a!="")
+        {
+		loadDate = JsonUtility.FromJson<SaveDate>(a);
+		clickNumber =  loadDate.clickNumber;
+			totalTime=loadDate.totalTime;
 	}
+        }
 	/// <summary>
 	/// 切換頭像
 	/// </summary>
@@ -100,19 +108,20 @@ public class GameController : MonoBehaviour
 	{
 		if (i == 0) note = "0";
 		else note += $"-{i}";
-		PlayerPrefs.SetString("note", note);
+		saveDate.note= note;
 	}
 	/// <summary>
 	/// 存檔
 	/// </summary>
-	void Saving()
+	void Saving(string name)//a
 	{
-		PlayerPrefs.SetInt("clickNumber", clickNumber);
-		PlayerPrefs.SetFloat("totalTime", totalTime);
+		saveDate.clickNumber = clickNumber;
+		saveDate.totalTime = totalTime;
+			PlayerPrefs.SetString(name,JsonUtility.ToJson(saveDate));
+		PlayerPrefs.Save();
 	}
 	void Update()
 	{
-		//print(PlayerPrefs.GetInt("clickNumber",1001));
 		totalTime += Time.deltaTime;
 		if (totalTime > 7)//起身7秒
 		{
@@ -156,12 +165,12 @@ public class GameController : MonoBehaviour
 			{
 				step = 3;
 				_HP.gameObject.SetActive(true);
-				Saving();
+				Saving("a");//////////////////////////////////////////////////////////////////////////////a
 			}
 			if (Conversation.Talk[clickNumber].Say == "end")
 			{
 				WriteNote(1);
-				SceneManager.LoadScene("Stage2");
+				//SceneManager.LoadScene("Stage2");
 			}
 		}
 		if (clickNumber - 1 > 0)//進入對話
@@ -169,8 +178,8 @@ public class GameController : MonoBehaviour
 			if (Conversation.Talk[clickNumber - 1].Who == "act")
 			{
 					step = 0;
-				if (Conversation.Talk[clickNumber].Say == "attack")
-					PlayerPrefs.Save();
+				if (Conversation.Talk[clickNumber-1].Say == "chest")
+					saveDate.position=Player.transform.position;
 			}
 		}
 		if (clickNumber == 16) _Text.fontSize = 30;///////縮小字
