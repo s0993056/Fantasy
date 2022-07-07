@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-	string name;
-	int attack;
+	public string name;
+	public int attack;
 	int buy;
 	int sold;
 	public Weapon(string n, int a, int b)

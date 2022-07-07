@@ -20,7 +20,8 @@ public class DamageController : MonoBehaviour
 	}
 	void Update()
 	{
-		damage = 4+2;
+		if (GameController.weapons.Count>0)
+		damage = GameController.weapons[0].attack+GameController.power;
 		if (nowAttack != PlayerController.Attacking)
 		{
 			box.size = Vector2.zero;

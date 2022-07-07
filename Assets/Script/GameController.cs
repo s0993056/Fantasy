@@ -56,7 +56,8 @@ public class GameController : MonoBehaviour
 	public static int monsterNumber;//怪物數量(是否全滅)
 	public static int clickNumber { get; private set; }
 	int dead;
-	int power;
+	public static int power;
+	public static List<Weapon> weapons = new List<Weapon>();
 	//string json;
 	SaveDate saveDate;
 	public SaveDate loadDate;
@@ -82,6 +83,7 @@ public class GameController : MonoBehaviour
 			clickNumber = loadDate.clickNumber;
 			totalTime = loadDate.totalTime;
 			dead = loadDate.dead;
+			power = loadDate.power;
 			Player.transform.position = loadDate.position;
 			Camera.transform.position = loadDate.position;
 			saveDate.position = loadDate.position;
@@ -90,6 +92,7 @@ public class GameController : MonoBehaviour
 		{
 		clickNumber = 0;
 		saveDate.position = new Vector2(-17, 2);
+			power = 2;
 		}
 	}
 	/// <summary>

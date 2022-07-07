@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
 		#endregion
 		#region §ðÀ»
 		if (Input.GetKeyDown(KeyCode.D) && (Step)GameController.step >= Step.Attack &&
-			AminatorTrigger(Trigger.Attack))
+			AminatorTrigger(Trigger.Attack)&&GameController.weapons.Count > 0)
 		{
 			TriggerChange(Trigger.Attack);
 			attackTime = 0.56f;
@@ -224,6 +224,7 @@ public class PlayerController : MonoBehaviour
 		if (other.gameObject.tag == "chest")
 		{
 			other.GetComponent<Animator>().SetTrigger("Open");
+			GameController.weapons.Add(Weapon.weapons[0]);
 		}
 	}
     #region ¨ü¶Ë¸I¼²
