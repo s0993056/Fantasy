@@ -11,7 +11,6 @@ public class DamageController : MonoBehaviour
 	float t = 0;//§ðÀ»´Á¶¡
 	int damage;
 
-	// Start is called before the first frame update
 	void Awake()
 	{
 		box = GetComponent<BoxCollider2D>();
@@ -19,8 +18,6 @@ public class DamageController : MonoBehaviour
 			box.offset = Vector2.right * 2.51f;
 
 	}
-
-	// Update is called once per frame
 	void Update()
 	{
 		damage = 4+2;

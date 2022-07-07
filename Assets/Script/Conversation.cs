@@ -10,7 +10,7 @@ public class Conversation
 		Who = who;
 		Say = say;
 	}
-    public static List<Conversation> Talk=new ()//-15
+    public readonly static List<Conversation> Talk=new ()//-15
     {//DiaryController    Crystal    CameraController 
         new Conversation("red", "這裡是……？"),
          new Conversation("crystal", "啊！醒來了！\n還好嗎？勇者大人？"),

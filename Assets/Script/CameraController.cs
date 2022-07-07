@@ -13,7 +13,6 @@ public class CameraController : MonoBehaviour
     void Awake()
     {
         Player = GameObject.FindWithTag("Player");
-        transform.position = new Vector2(PlayerPrefs.GetFloat("x", transform.position.x), PlayerPrefs.GetFloat("y", transform.position.y));
     }
     void LateUpdate()
     {

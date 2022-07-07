@@ -31,18 +31,11 @@ public class PlayerController : MonoBehaviour
 	int Hurt = 0;
 	public static bool events = false;
 	#endregion
-
-	GameController hp = new GameController();///////
 	void Awake()
 	{
 		rigid2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		audio=GetComponent<AudioSource>();
-		var a =  PlayerPrefs.GetString("a", "");
-		if (a != "")
-		{
-			transform.position = JsonUtility.FromJson<SaveDate>(a).position;
-		}
 		if (GameController.clickNumber < 1)
 			animator.Play("relife");
 	}
@@ -141,6 +134,18 @@ public class PlayerController : MonoBehaviour
 			TriggerChange(Trigger.Idle);
 			Attacking = 0;
 		}
+		#region 受傷
+        if (hurt)
+		{
+			if (hurtTime == 1)
+			{
+				TriggerChange(Trigger.Hurt);
+				GameController.HP -= Hurt;
+			}
+			if (hurtTime > 0) hurtTime -= Time.deltaTime;
+			if (hurtTime < 0) hurtTime=1;
+		}
+        #endregion
 		#region 左右控制
 		if (Input.GetKey(KeyCode.LeftArrow) && (Step)GameController.step >= Step.Run && AminatorTrigger(Trigger.Jump))
 		{
@@ -199,18 +204,7 @@ public class PlayerController : MonoBehaviour
 			TriggerChange(Trigger.Idle);
 		}
         #endregion
-        #region 受傷
-        if (hurt)
-		{
-			if (hurtTime == 1)
-			{
-				TriggerChange(Trigger.Hurt);
-				GameController.HP -= Hurt;
-			}
-			if (hurtTime > 0) hurtTime -= Time.deltaTime;
-			if (hurtTime < 0) hurtTime=1;
-		}
-        #endregion
+        
         if (Conversation.Talk[GameController.clickNumber].Say == "crystal") LR = -1;//小精靈出現轉身
 		if (LR != 0)//轉身
 			transform.localScale = new Vector3(LR, 1, 1);

@@ -46,6 +46,8 @@ public class GameController : MonoBehaviour
 	private Image _HP;//血量
 	[SerializeField]
 	private GameObject Player;
+	[SerializeField]
+	private GameObject Camera;
 	public static int step { get; private set; }
 	float tempTime = 0;
 	float totalTime = 0;
@@ -53,25 +55,43 @@ public class GameController : MonoBehaviour
 	public static int HP = 100;
 	public static int monsterNumber;//怪物數量(是否全滅)
 	public static int clickNumber { get; private set; }
+	int dead;
+	int power;
 	//string json;
 	SaveDate saveDate;
-	SaveDate loadDate;
+	public SaveDate loadDate;
 	#endregion
 	void Awake()
 	{
 		Talk.SetActive(false);//隱藏對話框
 		_HP.gameObject.SetActive(false);//隱藏血量
 		step = 0;
-		clickNumber = 0;
-		saveDate = new SaveDate();
-		var a = PlayerPrefs.GetString("a", "");
-        if (a!="")
-        {
-		loadDate = JsonUtility.FromJson<SaveDate>(a);
-		clickNumber =  loadDate.clickNumber;
-			totalTime=loadDate.totalTime;
+		saveDate = new SaveDate(); 
+		Loading("a");
 	}
-        }
+	/// <summary>
+	/// 載入
+	/// </summary>
+	public void Loading(string name)
+	{
+		var a = PlayerPrefs.GetString(name, "");/*
+			"";//*/
+		if (a != "")
+		{
+			loadDate = JsonUtility.FromJson<SaveDate>(a);
+			clickNumber = loadDate.clickNumber;
+			totalTime = loadDate.totalTime;
+			dead = loadDate.dead;
+			Player.transform.position = loadDate.position;
+			Camera.transform.position = loadDate.position;
+			saveDate.position = loadDate.position;
+		}
+		else
+		{
+		clickNumber = 0;
+		saveDate.position = new Vector2(-17, 2);
+		}
+	}
 	/// <summary>
 	/// 切換頭像
 	/// </summary>
@@ -115,8 +135,10 @@ public class GameController : MonoBehaviour
 	/// </summary>
 	void Saving(string name)//a
 	{
-		saveDate.clickNumber = clickNumber;
+		saveDate.clickNumber = clickNumber-1;//////////////////////////
 		saveDate.totalTime = totalTime;
+		saveDate.dead = dead;
+		if (saveDate.position == Vector2.zero) saveDate.position = new Vector2(-17,2);
 			PlayerPrefs.SetString(name,JsonUtility.ToJson(saveDate));
 		PlayerPrefs.Save();
 	}
@@ -165,11 +187,23 @@ public class GameController : MonoBehaviour
 			{
 				step = 3;
 				_HP.gameObject.SetActive(true);
-				Saving("a");//////////////////////////////////////////////////////////////////////////////a
+				if (HP<=0)
+				{
+					tempTime = totalTime;
+						dead++;
+					if (dead == 1) WriteNote(2);
+						HP = 100; 
+					}
+					if (totalTime-tempTime>0.5&& totalTime - tempTime < 0.6)
+					{
+					Player.transform.position =saveDate.position;
+				}
 			}
 			if (Conversation.Talk[clickNumber].Say == "end")
 			{
+				step = 3;
 				WriteNote(1);
+				if (Input.GetKeyDown(KeyCode.Space)) PlayerPrefs.DeleteKey("a");
 				//SceneManager.LoadScene("Stage2");
 			}
 		}
@@ -177,9 +211,13 @@ public class GameController : MonoBehaviour
 		{
 			if (Conversation.Talk[clickNumber - 1].Who == "act")
 			{
-					step = 0;
-				if (Conversation.Talk[clickNumber-1].Say == "chest")
-					saveDate.position=Player.transform.position;
+				step = 0;
+				if (Conversation.Talk[clickNumber - 1].Say == "chest")
+					saveDate.position = Player.transform.position;
+				if (Conversation.Talk[clickNumber-1].Say == "attack")
+				{
+					Saving("a");//////////////////////////////////////////////////////////////////////////////a
+				}
 			}
 		}
 		if (clickNumber == 16) _Text.fontSize = 30;///////縮小字
