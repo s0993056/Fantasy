@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
 	int dead;
 	public static int power;
 	public static List<Weapon> weapons = new List<Weapon>();
-	//string json;
+	string DateName;
 	SaveDate saveDate;
 	public SaveDate loadDate;
 	#endregion
@@ -67,8 +67,8 @@ public class GameController : MonoBehaviour
 		Talk.SetActive(false);//隱藏對話框
 		_HP.gameObject.SetActive(false);//隱藏血量
 		step = 0;
-		saveDate = new SaveDate(); 
-		Loading("a");
+		saveDate = new SaveDate();
+		Loading(PlayerPrefs.GetString("DataName", ""));
 	}
 	/// <summary>
 	/// 載入
@@ -138,9 +138,10 @@ public class GameController : MonoBehaviour
 	/// </summary>
 	void Saving(string name)//a
 	{
-		saveDate.clickNumber = clickNumber-1;//////////////////////////
+		PlayerPrefs.SetString("DataName", name);
+		saveDate.clickNumber = clickNumber;
 		saveDate.totalTime = totalTime;
-		saveDate.dead = dead;
+		//saveDate.dead = dead;
 		if (saveDate.position == Vector2.zero) saveDate.position = new Vector2(-17,2);
 			PlayerPrefs.SetString(name,JsonUtility.ToJson(saveDate));
 		PlayerPrefs.Save();
@@ -219,7 +220,8 @@ public class GameController : MonoBehaviour
 					saveDate.position = Player.transform.position;
 				if (Conversation.Talk[clickNumber-1].Say == "attack")
 				{
-					Saving("a");//////////////////////////////////////////////////////////////////////////////a
+					DateName = "a";//////////////////////////////////////////////////////////////////////////////a					
+					Saving(DateName);
 				}
 			}
 		}
